@@ -6,4 +6,6 @@ class NotImplementedError extends Error {
   }
 }
 
-module.exports.NotImplementedError = NotImplementedError
+module.exports = {
+  NotImplementedError
+}

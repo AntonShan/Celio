@@ -29,7 +29,9 @@ const isAlpha = function (c) {
 }
 
 const isSpace = function (c) {
-  return c.match(/\s/) !== null
+  return c !== void 0
+    ? c.match(/\s/) !== null
+    : false
 }
 
 const isSep = function (c) {

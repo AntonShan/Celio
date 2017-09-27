@@ -1,0 +1,9 @@
+Modify Star "Dystomia" {
+    RA              37.952916
+    Dec             -89.264167
+    Distance        1596.32
+    SpectralType    "G3V"
+    AbsMag          4.75
+    RotationPeriod          609.12
+    Obliquity               7.25
+}

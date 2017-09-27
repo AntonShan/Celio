@@ -1,22 +1,19 @@
 const chalk = require('chalk')
 
-const testFailed = ({title, result, expectedResult}) => `${title}:
+const testFailed = ({title, result, expectedResult}) => `Test: ${title}
   ${chalk.red('Failed')}
-    expected: ${expectedResult}
-    result: ${result}
+      expected: ${expectedResult}
+      result: ${result}
 `
 
-const testFailedWithException = ({title, exception}) => `${title}
+const testFailedWithException = ({title, exception}) => `Test: ${title}
   ${chalk.red('Failed with exception ' + exception.name)}
-    ${chalk.red('message: ' + exception.message)}
-    ${chalk.red(exception.stack)}
+      ${chalk.red('message: ' + exception.message)}
+      ${chalk.red(exception.stack)}
 `
 
-const testSucceed = ({title, result, expectedResult}) => `${title}:
-  ${chalk.green('Succeed')}
-    expected: ${expectedResult}
-    result: ${result}
-`
+const testSucceed = ({title, result, expectedResult}) => `Test: ${title}
+  ${chalk.green('Succeed')}`
 
 class Test {
   static create (title) {
@@ -49,6 +46,14 @@ class Test {
 
     if (this.exception) {
       reporter = testFailedWithException
+    } else if (this.expectedResult instanceof Array) {
+      if (!(this.expectedResult instanceof Array) &&
+        this.result.filter((v, i) => this.result[i] !== v).length > 0
+      ) {
+        reporter = testFailed
+      } else {
+        reporter = testSucceed
+      }
     } else if (this.result !== this.expectedResult) {
       reporter = testFailed
     } else {

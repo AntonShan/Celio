@@ -1,9 +1,39 @@
-const { State } = require('./State')
-const { TokenType } = require('./TokenType')
-const { charOf, atoi, itoa, isAlpha, isDigit, isSep, isSpace } = require('../utils')
-const { UTF8Encode } = require('../utils/utf8')
-const { isXDigit } = require('../utils')
-const { InputSyntaxError } = require('../Exceptions/InputSyntaxError')
+const {charOf, atoi, itoa, isAlpha, isDigit, isSep, isSpace} = require('../utils')
+const {UTF8Encode} = require('../utils/utf8')
+const {isXDigit} = require('../utils')
+const {InputSyntaxError} = require('../Exceptions/InputSyntaxError')
+
+const State = {
+  StartState: 'StartState',
+  NameState: 'NameState',
+  NumberState: 'NumberState',
+  FractionState: 'FractionState',
+  ExponentState: 'ExponentState',
+  ExponentFirstState: 'ExponentFirstState',
+  DotState: 'DotState',
+  CommentState: 'CommentState',
+  StringState: 'StringState',
+  ErrorState: 'ErrorState',
+  StringEscapeState: 'StringEscapeState',
+  UnicodeEscapeState: 'UnicodeEscapeState'
+}
+const TokenType = {
+  TokenName: 'TokenName',
+  TokenString: 'TokenString',
+  TokenNumber: 'TokenNumber',
+  TokenBegin: 'TokenBegin',
+  TokenEnd: 'TokenEnd',
+  TokenNull: 'TokenNull',
+  TokenBeginGroup: 'TokenBeginGroup',
+  TokenEndGroup: 'TokenEndGroup',
+  TokenBeginArray: 'TokenBeginArray',
+  TokenEndArray: 'TokenEndArray',
+  TokenEquals: 'TokenEquals',
+  TokenError: 'TokenError',
+  TokenBar: 'TokenBar',
+  TokenBeginUnits: 'TokenBeginUnits',
+  TokenEndUnits: 'TokenEndUnits'
+}
 
 class Tokenizer {
   constructor (data) {
@@ -28,6 +58,11 @@ class Tokenizer {
       this.pushedBack = false
       return this.tokenType
     }
+
+    this.value = ''
+    this.haveValidNumber = false
+    this.haveValidName = false
+    this.haveValidString = false
 
     if (this.tokenType === TokenType.TokenBegin) {
       this.nextChar = this.readChar()
@@ -68,34 +103,34 @@ class Tokenizer {
             integerValue = 0
           } else if (isAlpha(this.nextChar) || this.nextChar === '_') {
             state = State.NameState
-            this.value = (this.value || '') + charOf(this.nextChar)
+            this.value += this.nextChar
           } else if (this.nextChar === '#') {
             state = State.CommentState
           } else if (this.nextChar === '"') {
             state = State.StringState
           } else if (this.nextChar === '{') {
-            state = State.TokenBeginGroup
+            newToken = TokenType.TokenBeginGroup
             this.nextChar = this.readChar()
           } else if (this.nextChar === '}') {
-            state = State.TokenEndGroup
+            newToken = TokenType.TokenEndGroup
             this.nextChar = this.readChar()
           } else if (this.nextChar === '[') {
-            state = State.TokenBeginArray
+            newToken = TokenType.TokenBeginArray
             this.nextChar = this.readChar()
           } else if (this.nextChar === ']') {
-            state = State.TokenEndArray
+            newToken = TokenType.TokenEndArray
             this.nextChar = this.readChar()
           } else if (this.nextChar === '=') {
-            state = State.TokenEquals
+            newToken = TokenType.TokenEquals
             this.nextChar = this.readChar()
           } else if (this.nextChar === '|') {
-            state = State.TokenBar
+            newToken = TokenType.TokenBar
             this.nextChar = this.readChar()
           } else if (this.nextChar === '<') {
-            state = State.TokenBeginUnits
+            newToken = TokenType.TokenBeginUnits
             this.nextChar = this.readChar()
           } else if (this.nextChar === '>') {
-            state = State.TokenEndUnits
+            newToken = TokenType.TokenEndUnits
             this.nextChar = this.readChar()
           } else if (this.nextChar === void 0) {
             newToken = TokenType.TokenEnd
@@ -104,21 +139,24 @@ class Tokenizer {
             this.syntaxError(`Bad character in stream at line ${this.getLineNumber()}`)
           }
           break
+
         case State.NameState:
           if (isAlpha(this.nextChar) || isDigit(this.nextChar) || this.nextChar === '_') {
             state = State.NameState
-            this.value += charOf(this.nextChar)
+            this.value += this.nextChar
           } else {
             newToken = TokenType.TokenName
             this.haveValidName = true
           }
           break
+
         case State.CommentState:
           // TODO: проверить это "потенциально ломательное" место
           if (this.nextChar === '\n' || this.nextChar === '\r' || this.nextChar === void 0) {
             state = State.StartState
           }
           break
+
         case State.StringState:
           if (this.nextChar === '"') {
             newToken = TokenType.TokenString
@@ -131,7 +169,7 @@ class Tokenizer {
             this.syntaxError('Unterminated string')
           } else {
             state = State.StringState
-            this.value = (this.value || '') + this.nextChar
+            this.value += this.nextChar
           }
           break
         case State.StringEscapeState:
@@ -154,6 +192,7 @@ class Tokenizer {
             this.syntaxError(`Unknown escape code in string at line ${this.getLineNumber()}`)
           }
           break
+
         case State.NumberState:
           if (isDigit(this.nextChar)) {
             state = State.NumberState
@@ -170,6 +209,7 @@ class Tokenizer {
             this.syntaxError(`Bad character in number at line ${this.getLineNumber()}`)
           }
           break
+
         case State.FractionState:
           if (isDigit(this.nextChar)) {
             state = State.FractionState
@@ -185,6 +225,7 @@ class Tokenizer {
             this.syntaxError(`Bad character in number at line ${this.getLineNumber()}`)
           }
           break
+
         case State.ExponentFirstState:
           if (isDigit(this.nextChar)) {
             state = State.ExponentState
@@ -199,6 +240,7 @@ class Tokenizer {
             this.syntaxError(`Bad character in number at line ${this.getLineNumber()}`)
           }
           break
+
         case State.ExponentState:
           if (isDigit(this.nextChar)) {
             state = State.ExponentState
@@ -211,6 +253,7 @@ class Tokenizer {
             this.syntaxError(`Bad character in number at line ${this.getLineNumber()}`)
           }
           break
+
         case State.DotState:
           if (isDigit(this.nextChar)) {
             state = State.FractionState
@@ -221,6 +264,7 @@ class Tokenizer {
             this.syntaxError(`'.' in stupid place. Line ${this.getLineNumber()}`)
           }
           break
+
         case State.UnicodeEscapeState:
           if (isXDigit(this.nextChar)) {
             let digitValue
@@ -245,6 +289,7 @@ class Tokenizer {
             this.syntaxError(`Bad Unicode escape in string at line ${this.getLineNumber()}`)
           }
           break
+
         case State.ErrorState:
           break
       }
@@ -277,7 +322,7 @@ class Tokenizer {
   }
 
   getValue () {
-    return this.nextValue
+    return this.value
   }
 
   getLineNumber () {
@@ -304,4 +349,8 @@ class Tokenizer {
   }
 }
 
-module.exports.Tokenizer = Tokenizer
+module.exports = {
+  TokenType,
+  State,
+  Tokenizer
+}
