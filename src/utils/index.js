@@ -4,6 +4,12 @@ const charOf = function (c) {
     : c
 }
 
+const fromByteArray = function (a) {
+  return a.reduceRight((acc, v, i) => {
+    return acc + (v * (256 ** i))
+  }, 0)
+}
+
 const itoa = function (c) {
   return Number(c.replace(/\./))
 }
@@ -46,5 +52,6 @@ module.exports = {
   isDigit,
   isAlpha,
   isSpace,
-  isSep
+  isSep,
+  fromByteArray
 }

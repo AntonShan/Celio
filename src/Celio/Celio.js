@@ -1,9 +1,19 @@
 const fs = require('fs')
 const path = require('path')
 
-const {Reader} = require('../Reader/Reader')
-
 class Celio {
+  constructor (inputType, data) {
+    this.reader = null
+
+    if (inputType.startsWith('.')) {
+      let type = inputType.split('.')[1].toUpperCase()
+      const Reader = require(`../Reader/${type}Reader`)
+      this.reader = new Reader(data)
+    } else {
+      throw new Error('Unknown file error')
+    }
+  }
+
   static read (filePath) {
     return new Promise(function (resolve, reject) {
       try {
@@ -14,12 +24,9 @@ class Celio {
             return reject(error)
           }
 
-          const reader = new Reader({
-            type: path.extname(fullPath),
-            data
-          })
+          const celio = new Celio(path.extname(fullPath), data)
 
-          resolve(reader.read())
+          resolve(celio.reader.read())
         })
       } catch (e) {
         reject(e)
