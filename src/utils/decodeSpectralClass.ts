@@ -1,48 +1,51 @@
-const StarType = {
-  NormalStar: 0,
-  WhiteDwarf: 1,
-  NeutronStar: 2,
-  BlackHole: 3,
+enum StarType {
+  NormalStar,
+  WhiteDwarf,
+  NeutronStar,
+  BlackHole,
 }
-const SpectralClass = {
-  Spectral_O: 0,
-  Spectral_B: 1,
-  Spectral_A: 2,
-  Spectral_F: 3,
-  Spectral_G: 4,
-  Spectral_K: 5,
-  Spectral_M: 6,
-  Spectral_R: 7, // superceded by class C
-  Spectral_S: 8,
-  Spectral_N: 9, // superceded by class C
-  Spectral_WC: 10,
-  Spectral_WN: 11,
-  Spectral_Unknown: 12,
-  Spectral_L: 13,
-  Spectral_T: 14,
-  Spectral_C: 15,
-  Spectral_DA: 16, // white dwarf A (Balmer lines, no He I or metals)
-  Spectral_DB: 17, // white dwarf B (He I lines, no H or metals)
-  Spectral_DC: 18, // white dwarf C, continuous spectrum
-  Spectral_DO: 19, // white dwarf O, He II strong, He I or H
-  Spectral_DQ: 20, // white dwarf Q, carbon features
-  Spectral_DZ: 21, // white dwarf Z, metal lines only, no H or He
-  Spectral_D: 22, // generic white dwarf, no additional data
-  Spectral_DX: 23,
-  Spectral_Count: 24
+
+enum SpectralClass {
+  Spectral_O,
+  Spectral_B,
+  Spectral_A,
+  Spectral_F,
+  Spectral_G,
+  Spectral_K,
+  Spectral_M,
+  Spectral_R, // superceded by class C
+  Spectral_S,
+  Spectral_N, // superceded by class C
+  Spectral_WC,
+  Spectral_WN,
+  Spectral_Unknown,
+  Spectral_L,
+  Spectral_T,
+  Spectral_C,
+  Spectral_DA, // white dwarf A (Balmer lines, no He I or metals)
+  Spectral_DB, // white dwarf B (He I lines, no H or metals)
+  Spectral_DC, // white dwarf C, continuous spectrum
+  Spectral_DO, // white dwarf O, He II strong, He I or H
+  Spectral_DQ, // white dwarf Q, carbon features
+  Spectral_DZ, // white dwarf Z, metal lines only, no H or He
+  Spectral_D, // generic white dwarf, no additional data
+  Spectral_DX,
+  Spectral_Count
 }
-const LuminosityClass = {
-  Lum_Ia0: 0,
-  Lum_Ia: 1,
-  Lum_Ib: 2,
-  Lum_II: 3,
-  Lum_III: 4,
-  Lum_IV: 5,
-  Lum_V: 6,
-  Lum_VI: 7,
-  Lum_Unknown: 8,
-  Lum_Count: 9
+
+enum LuminosityClass {
+  Lum_Ia0,
+  Lum_Ia,
+  Lum_Ib,
+  Lum_II,
+  Lum_III,
+  Lum_IV,
+  Lum_V,
+  Lum_VI,
+  Lum_Unknown,
+  Lum_Count
 }
+
 const LumStrClasses = [
   'I-a0',
   'I-a',
@@ -56,7 +59,7 @@ const LumStrClasses = [
 const SubClassUnknown = 10
 const WDClassCount = 8
 
-const unpackStellarClass = (st) => {
+const unpackStellarClass = (st: number): any => {
   let starType = st >> 12
   let specClass
   let subClass
@@ -92,7 +95,7 @@ const unpackStellarClass = (st) => {
     lumClass
   }
 }
-const decodeSpectralClass = (st) => {
+const decodeSpectralClass = (st: number): string => {
   let stellarClass = unpackStellarClass(st)
   let specClass
   let subClass
@@ -115,10 +118,4 @@ const decodeSpectralClass = (st) => {
   return `${specClass}${subClass}${lumClass}`
 }
 
-module.exports = {
-  StarType,
-  SpectralClass,
-  LuminosityClass,
-  unpackStellarClass,
-  decodeSpectralClass
-}
+export default decodeSpectralClass

@@ -1,9 +1,6 @@
-const {NotImplementedError} = require('../Exceptions/NotImplementedError')
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class Reader {
-  read () {
-    throw new NotImplementedError('Not implemented')
-  }
 }
-
-module.exports = Reader
+exports.default = Reader;
+//# sourceMappingURL=Reader.js.map

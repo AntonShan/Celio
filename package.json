@@ -2,7 +2,7 @@
   "name": "celio",
   "version": "0.0.1",
   "description": "Celestia catalogue files parser",
-  "main": "index.js",
+  "main": "index.ts",
   "directories": {
     "test": "tests"
   },
@@ -18,7 +18,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/es6-promise": "^0.0.33",
+    "@types/node": "^8.0.31",
+    "tslint": "^5.7.0",
+    "tslint-config-standard": "^6.0.1"
+  },
   "author": "AntonShan",
   "license": "MIT"
 }

@@ -1,11 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class NotImplementedError extends Error {
-  constructor (msg) {
-    super()
-    this.name = 'NotImplementedError'
-    this.message = `Not Implemented Error: ${msg}`
-  }
+    constructor(msg) {
+        super();
+        this.name = 'NotImplementedError';
+        this.message = `Not Implemented Error: ${msg}`;
+    }
 }
-
-module.exports = {
-  NotImplementedError
-}
+exports.default = NotImplementedError;
+//# sourceMappingURL=NotImplementedError.js.map
