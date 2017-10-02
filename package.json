@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "description": "Celestia catalogue files parser",
   "main": "index.ts",
-  "directories": {
-    "test": "tests"
-  },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "chalk": "^2.1.0",
@@ -19,10 +16,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@types/es6-promise": "^0.0.33",
     "@types/node": "^8.0.31",
+    "ts-loader": "^2.3.7",
     "tslint": "^5.7.0",
-    "tslint-config-standard": "^6.0.1"
+    "tslint-config-standard": "^6.0.1",
+    "typescript": "^2.5.3",
+    "webpack": "^3.6.0"
   },
   "author": "AntonShan",
   "license": "MIT"

@@ -1,17 +1,16 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "module": "commonjs",
     "target": "es2015",
     "removeComments": true,
-    "preserveConstEnums": true,
     "sourceMap": true,
     "typeRoots": [
       "./node_modules/@types"
-    ]
+    ],
+    "moduleResolution": "node"
   },
   "files": [
-    "index.ts"
+    "./index.ts"
   ],
   "exclude": [
     "node_modules"
