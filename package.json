@@ -10,13 +10,18 @@
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-html": "^3.2.1",
     "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "eslint-plugin-standard": "^3.0.1",
+    "loader-utils": "^1.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@types/nearley": "^2.11.0",
     "@types/node": "^8.0.31",
+    "moo": "^0.4.3",
+    "nearley": "^2.11.0",
+    "nearley-there": "^1.0.0",
     "ts-loader": "^2.3.7",
     "tslint": "^5.7.0",
     "tslint-config-standard": "^6.0.1",

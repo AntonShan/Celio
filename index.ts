@@ -1,3 +1,8 @@
 import { Celio } from './src/Celio'
 
-Celio.read('./input/Dystomia.stc').then(console.dir)
+const paramIndex = process.argv.indexOf('-f')
+const inputFile = process.argv[paramIndex + 1]
+
+Celio.read(inputFile)
+  .catch(e => console.error(e))
+  .then(console.dir)

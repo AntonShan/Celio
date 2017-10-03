@@ -2,30 +2,32 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as Reader from '../Reader'
 
+const {promisify} = require('util')
+const readFileAsync = promisify(fs.readFile)
+
 class Celio {
   static read (filePath: string): Promise<any[]> {
     return new Promise<any[]>((resolve, reject) => {
       let fullPath = path.resolve(filePath)
 
-      fs.readFile(fullPath, async (error, data) => {
-        if (error) {
-          return reject(error)
-        }
-
-        const inputType = path.extname(fullPath)
-
-        if (inputType.startsWith('.')) {
-          let type = inputType.split('.')[1].toUpperCase()
+      readFileAsync(fullPath)
+        .catch(reject)
+        .then((data) => {
           try {
-            const SpecificReader = Reader[`${type}Reader`]
-            resolve(new SpecificReader(data).read(filePath))
+            const inputType = path.extname(fullPath)
+
+            if (inputType.startsWith('.')) {
+              const input = [...data].map(c => String.fromCharCode(c)).join('')
+              const type = inputType.split('.')[1].toUpperCase()
+              const SpecificReader = Reader[`${type}Reader`]
+              resolve(new SpecificReader().read(input))
+            } else {
+              throw new Error('Unknown file error')
+            }
           } catch (e) {
             return reject(e)
           }
-        } else {
-          throw new Error('Unknown file error')
-        }
-      })
+        })
     })
   }
 
