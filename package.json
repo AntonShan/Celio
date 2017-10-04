@@ -22,6 +22,7 @@
     "moo": "^0.4.3",
     "nearley": "^2.11.0",
     "nearley-there": "^1.0.0",
+    "nearley-webpack-loader": "^0.0.1",
     "ts-loader": "^2.3.7",
     "tslint": "^5.7.0",
     "tslint-config-standard": "^6.0.1",

@@ -7,8 +7,8 @@
   resolved "https://registry.yarnpkg.com/@types/nearley/-/nearley-2.11.0.tgz#308fd197fdd6d76c52c4ca6f5bb8f42073afa91b"
 
 "@types/node@^8.0.31":
-  version "8.0.31"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.31.tgz#d9af61093cf4bfc9f066ca34de0175012cfb0ce9"
+  version "8.0.32"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.32.tgz#869a716538b6eec65ab3893f183d557be3cda206"
 
 abbrev@1:
   version "1.1.1"
@@ -1723,6 +1723,13 @@ natural-compare@^1.4.0:
 nearley-there@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/nearley-there/-/nearley-there-1.0.0.tgz#b9fbadf4d00c8d15ba6fa5b01ff49cf99a0e545f"
+
+nearley-webpack-loader@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/nearley-webpack-loader/-/nearley-webpack-loader-0.0.1.tgz#d91691fef37700cc4f2125c1ad15c0c48c93b260"
+  dependencies:
+    loader-utils "^1.1.0"
+    nearley "^2.11.0"
 
 nearley@^2.11.0:
   version "2.11.0"

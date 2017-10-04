@@ -1,9 +1,0 @@
-{
-  "name": "nearley-loader",
-  "version": "0.0.1",
-  "main": "index.js",
-  "dependencies": {
-    "loader-utils": "^1.1.0",
-    "nearley": "^2.11.0"
-  }
-}

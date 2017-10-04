@@ -1,7 +1,5 @@
 const path = require('path')
 
-const loadersPath = path.resolve(__dirname, 'loaders')
-
 module.exports = {
   entry: './index.ts',
   module: {
@@ -13,7 +11,7 @@ module.exports = {
       },
       {
         test: /\.ne$/,
-        loader: 'nearley-loader',
+        loader: 'nearley-webpack-loader',
         options: {
           baseDir: './src/grammar/'
         }
@@ -27,11 +25,5 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build')
-  },
-  resolveLoader: {
-    modules: [
-      'node_modules',
-      path.resolve(__dirname, 'loaders')
-    ]
   }
 }
