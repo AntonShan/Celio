@@ -10,7 +10,8 @@ abstract class NearleyBasedReader {
   }
 
   read (data: string): any[] {
-    return this.parser.feed(data).results[0]
+    const results = this.parser.feed(data)
+    return results.results[0]
   }
 }
 

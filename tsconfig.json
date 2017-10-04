@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "target": "es2015",
+    "target": "es2016",
     "removeComments": true,
     "sourceMap": true,
     "typeRoots": [
-      "./node_modules/@types"
+      "./node_modules/@types",
+      "./src/types"
     ],
     "moduleResolution": "node"
   },

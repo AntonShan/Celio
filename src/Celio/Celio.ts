@@ -10,14 +10,14 @@ class Celio {
     return new Promise<any[]>((resolve, reject) => {
       let fullPath = path.resolve(filePath)
 
-      readFileAsync(fullPath)
+      readFileAsync(fullPath, 'utf-8')
         .catch(reject)
         .then((data) => {
           try {
             const inputType = path.extname(fullPath)
 
             if (inputType.startsWith('.')) {
-              const input = [...data].map(c => String.fromCharCode(c)).join('')
+              const input = data.replace(/#(?:.*)?$/gm, '') // Remove comments from file
               const type = inputType.split('.')[1].toUpperCase()
               const SpecificReader = Reader[`${type}Reader`]
               resolve(new SpecificReader().read(input))

@@ -1,5 +1,5 @@
 import NearleyBasedReader from './NearleyBasedReader'
-import parser from '../grammar/stcparser.ne'
+import * as parser from '../grammar/stcparser.ne'
 
 class STCReader extends NearleyBasedReader {
   constructor () {

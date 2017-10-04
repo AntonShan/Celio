@@ -1,4 +1,3 @@
-const path = require('path')
 const loaderUtils = require('loader-utils')
 const nearley = require('nearley')
 const compile = require('nearley/lib/compile')
@@ -18,6 +17,14 @@ function compileGrammar (sourceCode, callback) {
   callback(null, output)
 }
 
+function replacePaths (source, baseDir) {
+  return source.replace(
+    /@include[\s]+"([^"]+)"/gm,
+    (match, m1) => `@include "${baseDir + m1}"`
+  )
+}
+
 module.exports = function (source) {
-  return compileGrammar(source, this.async())
+  const options = loaderUtils.getOptions(this)
+  return compileGrammar(replacePaths(source, options.baseDir || ''), this.async())
 }

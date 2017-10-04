@@ -13,7 +13,10 @@ module.exports = {
       },
       {
         test: /\.ne$/,
-        loader: 'nearley-loader'
+        loader: 'nearley-loader',
+        options: {
+          baseDir: './src/grammar/'
+        }
       }
     ]
   },
