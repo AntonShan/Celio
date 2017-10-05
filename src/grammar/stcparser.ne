@@ -47,7 +47,7 @@ STC_DEFINITION -> WS:* STC_OBJECT_MODE:? STC_OBJECT_TYPE:? STC_HIP_NUMBER:? STC_
 
 STC_PROPERTIES -> GROUP WS {% data => data[0] %}
 
-STC_HIP_NUMBER -> NUMBER WS {% data => data[0] %}
+STC_HIP_NUMBER -> NUMBER WS:* {% data => data[0] %}
 
 STC_NAME -> STRING WS {% data => data[0] %}
 

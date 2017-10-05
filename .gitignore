@@ -1,6 +1,4 @@
 node_modules
 yarn-error.log
 .idea
-src/**/*.js
-src/**/*.map
 build/
