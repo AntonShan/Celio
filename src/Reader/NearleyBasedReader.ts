@@ -1,17 +1,24 @@
-import {Parser, Grammar} from 'nearley'
+import { Grammar, Parser } from 'nearley'
+import AbstractReader from './AbstractReader'
+import * as fs from 'fs'
 
-abstract class NearleyBasedReader {
+class NearleyBasedReader implements AbstractReader {
   parser: any
-  grammar: any
 
   constructor (grammar) {
-    this.grammar = grammar
-    this.parser = new Parser(Grammar.fromCompiled(this.grammar))
+    this.parser = new Parser(Grammar.fromCompiled(grammar))
   }
 
-  read (data: string): any[] {
-    const results = this.parser.feed(data)
-    return results.results[0]
+  read (filePath: string): Promise<any[]> {
+    return new Promise((resolve, reject) => {
+      fs.readFile(filePath, 'utf-8', (error, data) => {
+        if (error) {
+          return reject(error)
+        }
+
+        resolve(this.parser.feed(data).results[0])
+      })
+    })
   }
 }
 

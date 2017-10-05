@@ -1,5 +1,10 @@
 @{%
-  const fromPairs = require('lodash/fromPairs')
+  const fromPairs = function (input) {
+    return input.reduce((acc, i) => {
+        acc[i[0]] = i[1]
+        return acc
+    }, {})
+  }
   const moo = require('moo')
 
   const nuller = x => null

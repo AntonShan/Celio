@@ -1,4 +1,6 @@
 import { convert, decodeSpectralClass, Utils } from '../utils'
+import AbstractReader from './AbstractReader'
+import * as fs from 'fs'
 
 const FILE_HEADER = 'CELSTARS'
 const VERSION = 0x0100
@@ -8,8 +10,8 @@ const uint8ToUint32 = convert('Uint8')('Uint32')
 const uint8ToFloat32 = convert('Uint8')('Float32')
 const HEADER_OFFSET = 14
 
-class DATReader {
-  static read (data) {
+class DATReader implements AbstractReader {
+  private parse (data: Buffer): any[] {
     const byteArray = [...data]
     let starsInFile = 0
 
@@ -62,6 +64,18 @@ class DATReader {
       ++starNumber
     }
     return result
+  }
+
+  read (fileName): Promise<any[]> {
+    return new Promise((resolve, reject) => {
+      fs.readFile(fileName, (error, data: Buffer) => {
+        if (error) {
+          return reject(error)
+        }
+
+        return resolve(this.parse(data))
+      })
+    })
   }
 }
 
