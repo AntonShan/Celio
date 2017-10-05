@@ -1,9 +1,10 @@
-import { AbstractReader, DATReader, NearleyBasedReader } from '../Reader/index'
+import { AbstractReader, DATReader, NearleyBasedReader } from '../Reader'
+import { AbstractWriter, TextWriter, STCWriter } from '../Writer'
 import Grammars from '../grammar'
 import { FormatsChecker, FormatType } from '../FormatsChecker'
 
 class Injector {
-  static make (extension): AbstractReader {
+  static makeReader (extension: string): AbstractReader {
     switch (FormatsChecker.formatType(extension)) {
       case FormatType.BINARY:
         return new DATReader()
@@ -15,6 +16,11 @@ class Injector {
       case FormatType.INCORRECT:
         throw new Error(`Incorrect file format`)
     }
+  }
+
+  static makeWriter (extension: string): AbstractWriter {
+    // TODO: Имплементировать вывод в файл
+    return new STCWriter()
   }
 }
 
