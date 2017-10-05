@@ -95,6 +95,7 @@ const unpackStellarClass = (st: number): any => {
     lumClass
   }
 }
+
 const decodeSpectralClass = (st: number): string => {
   let stellarClass = unpackStellarClass(st)
   let specClass

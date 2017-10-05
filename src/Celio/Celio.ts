@@ -14,7 +14,9 @@ class Celio {
   static write (filePath: string, items: any[]): Promise<void> {
     const fileExtension = path.extname(filePath)
     const type = fileExtension.split('.')[1]
-    return new Promise<void>(resolve => resolve())
+    const Writer = Injector.makeWriter(type)
+
+    return Writer.write(filePath, items)
   }
 }
 

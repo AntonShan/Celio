@@ -3,7 +3,7 @@ import UTF8Encode from './UTF8'
 import Constants from './Constants'
 import Conversions from './Conversions'
 import decodeSpectralClass from './decodeSpectralClass'
-import convert from './convert'
+import encodeSpectralClass from './encodeSpectralClass'
 
 export {
   Utils,
@@ -11,5 +11,5 @@ export {
   Constants,
   Conversions,
   decodeSpectralClass,
-  convert
+  encodeSpectralClass
 }

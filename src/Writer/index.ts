@@ -1,9 +1,15 @@
 import AbstractWriter from './AbstractWriter'
-import TextWriter from './TextWriter'
 import STCWriter from './STCWriter'
+import SSCWriter from './SSCWriter'
+import DSCWriter from './DSCWriter'
+import CFGWriter from './CFGWriter'
+import DATWriter from './DATWriter'
 
 export {
   AbstractWriter,
-  TextWriter,
-  STCWriter
+  STCWriter,
+  SSCWriter,
+  DSCWriter,
+  CFGWriter,
+  DATWriter
 }

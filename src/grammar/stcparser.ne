@@ -3,11 +3,11 @@
   const validTypes = ['Star', 'Barycenter']
 
   const objectBlueprint = {
-  	mode: 'Add',
-  	type: 'Star',
-  	name: null,
-  	number: null,
-  	properties: {}
+    mode: 'Add',
+    type: 'Star',
+    name: null,
+    number: null,
+    properties: {}
   }
 %}
 @include "common.ne"
@@ -55,5 +55,5 @@ STC_OBJECT_MODE -> %MODIFY_MODE WS {% data => data[0].value %}
   | %ADD_MODE WS {% data => data[0].value %}
   | %REPLACE_MODE WS {% data => data[0].value %}
 
-STC_OBJECT_TYPE -> %STAR_TYPE WS {% data => data[0].value %}
-  | %BARYCENTER_TYPE WS {% data => data[0].value %}
+STC_OBJECT_TYPE -> %STC_STAR_TYPE WS {% data => data[0].value %}
+  | %STC_BARYCENTER_TYPE WS {% data => data[0].value %}

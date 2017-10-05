@@ -1,5 +1,5 @@
 import { AbstractReader, DATReader, NearleyBasedReader } from '../Reader'
-import { AbstractWriter, TextWriter, STCWriter } from '../Writer'
+import { AbstractWriter, STCWriter, SSCWriter, DSCWriter, CFGWriter, DATWriter } from '../Writer'
 import Grammars from '../grammar'
 import { FormatsChecker, FormatType } from '../FormatsChecker'
 
@@ -19,8 +19,31 @@ class Injector {
   }
 
   static makeWriter (extension: string): AbstractWriter {
-    // TODO: Имплементировать вывод в файл
-    return new STCWriter()
+    switch (FormatsChecker.formatType(extension)) {
+      case FormatType.BINARY:
+        return new DATWriter()
+
+      case FormatType.TEXT:
+        switch (extension) {
+          case 'stc':
+            return new STCWriter()
+
+          case 'ssc':
+            return new SSCWriter()
+
+          case 'dsc':
+            return new DSCWriter()
+
+          case 'cfg':
+            return new CFGWriter()
+
+          default:
+            throw new Error(`Incorrect file format`)
+        }
+
+      case FormatType.INCORRECT:
+        throw new Error(`Incorrect file format`)
+    }
   }
 }
 

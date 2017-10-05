@@ -31,6 +31,9 @@ const Constants = {
 
   SOLAR_IRRADIANCE: 1367.6, // Watts / m^2
   SOLAR_POWER: 3.8462e26, // Watts
+  FILE_HEADER: 'CELSTARS',
+  VERSION: 0x0100,
+  HEADER_OFFSET: 14
 }
 
 export default Constants

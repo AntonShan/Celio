@@ -1,7 +1,7 @@
 @{%
   const sscBlueprint = {
-    mode: null,
-    type: null,
+    mode: 'Add',
+    type: 'Body',
     primaryName: null,
     parentName: null,
     names: [],

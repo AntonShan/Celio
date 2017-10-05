@@ -1,18 +1,18 @@
 @{%
   const dsoBlueprint = {
-    type: '',
+    type: null,
     names: [],
-    number: -1,
+    number: null,
     properties: {
-      RA: 0,
-      Dec: 0,
-      Distance: 0,
-      Radius: 0,
-      CoreRadius: 0,
-      KingConcentration: 0,
-      AbsMag: 0,
-      Axis: [0, 0, 0],
-      Angle: 0,
+      RA: null,
+      Dec: null,
+      Distance: null,
+      Radius: null,
+      CoreRadius: null,
+      KingConcentration: null,
+      AbsMag: null,
+      Axis: [],
+      Angle: null,
       InfoURL: null
     }
   }
@@ -45,7 +45,7 @@ DSC_NUMBER -> NUMBER WS {% data => data[0] %}
 
 DSC_NAME -> STRING WS {% data => data[0] %}
 
-DSC_OBJECT_TYPE -> %GALAXY_TYPE WS {% data => data[0].value %}
-  | %GLOBULAR_TYPE WS {% data => data[0].value %}
-  | %NEBULA_TYPE WS {% data => data[0].value %}
-  | %OPEN_CLUSTER_TYPE WS {% data => data[0].value %}
+DSC_OBJECT_TYPE -> %DSC_GALAXY_TYPE WS {% data => data[0].value %}
+  | %DSC_GLOBULAR_TYPE WS {% data => data[0].value %}
+  | %DSC_NEBULA_TYPE WS {% data => data[0].value %}
+  | %DSC_OPEN_CLUSTER_TYPE WS {% data => data[0].value %}

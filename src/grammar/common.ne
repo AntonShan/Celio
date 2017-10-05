@@ -10,7 +10,7 @@
   const nuller = x => null
 
   const lexer = moo.compile({
-  	CONFIG_KEYWORD: /Configuration\b/,
+    CONFIG_KEYWORD: /Configuration\b/,
 
     ADD_MODE: /Add\b/,
     MODIFY_MODE: /Modify\b/,
@@ -22,13 +22,13 @@
     SSC_ALT_SURFACE: /AltSurface\b/,
     SSC_LOCATION: /Location\b/,
 
-    STAR_TYPE: /Star\b/,
-    BARYCENTER_TYPE: /Barycenter\b/,
+    STC_STAR_TYPE: /Star\b/,
+    STC_BARYCENTER_TYPE: /Barycenter\b/,
 
-    GALAXY_TYPE: /Galaxy\b/,
-    GLOBULAR_TYPE: /Globular\b/,
-    NEBULA_TYPE: /Nebula\b/,
-    OPEN_CLUSTER_TYPE: /OpenCluster\b/,
+    DSC_GALAXY_TYPE: /Galaxy\b/,
+    DSC_GLOBULAR_TYPE: /Globular\b/,
+    DSC_NEBULA_TYPE: /Nebula\b/,
+    DSC_OPEN_CLUSTER_TYPE: /OpenCluster\b/,
 
     TRUE: /true/,
     FALSE: /false/,
@@ -46,7 +46,6 @@
     },
     COMMENT: {
       match: /#.*?\r\n/,
-//      match: /#.*$/,
       lineBreaks: true
     }
   })

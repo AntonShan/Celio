@@ -1,3 +1,4 @@
+import * as fs from 'fs'
 import AbstractWriter from './AbstractWriter'
 
 import isObject from 'lodash-es/isObject'
@@ -12,7 +13,17 @@ abstract class TextWriter implements AbstractWriter {
     flag: 'w'
   }
 
-  abstract write (fullPath: string, items: any[]): Promise<void>
+  write (fullPath: string, items: any[], options = this.defaultWriteMode): Promise<void> {
+    return new Promise((resolve, reject) => {
+      fs.writeFile(fullPath, this.transform(items), options, (error) => {
+        if (error) {
+          return reject(error)
+        }
+
+        return resolve()
+      })
+    })
+  }
 
   transform (items: any[]): string {
     return items.map(item => this.transformItem(item)).join(' ')
