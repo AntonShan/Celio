@@ -75,7 +75,8 @@ const unpackStellarClass = (st: number): any => {
       if ((st >> 8 & 0xf) >= WDClassCount) {
         return null
       }
-      specClass = (st >> 8 * 0xf) + SpectralClass.Spectral_DA
+      specClass = (st >> 8 & 0xf) + SpectralClass.Spectral_DA
+      subClass = st >> 4 & 0xf
       lumClass = LuminosityClass.Lum_Unknown
       break
     case StarType.NeutronStar:
@@ -110,7 +111,7 @@ const decodeSpectralClass = (st: number): string => {
     specClass = 'X'
   } else if (stellarClass.starType === StarType.NormalStar) {
     specClass = 'OBAFGKMRSNWW?LTC'[stellarClass.specClass] || ''
-    subClass = String(stellarClass.subClass) || ''
+    subClass = '0123456789'[stellarClass.subClass] || ''
     lumClass = LumStrClasses[stellarClass.lumClass] || ''
   } else {
     specClass = '?'

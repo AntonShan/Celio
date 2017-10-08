@@ -38,24 +38,24 @@ enum SpectralClass {
   Spectral_G,
   Spectral_K,
   Spectral_M,
-  Spectral_R, // superceded by class C
+  Spectral_R,
   Spectral_S,
-  Spectral_N, // superceded by class C
+  Spectral_N,
   Spectral_WC,
   Spectral_WN,
   Spectral_Unknown,
   Spectral_L,
   Spectral_T,
   Spectral_C,
-  Spectral_DA, // white dwarf A (Balmer lines, no He I or metals)
-  Spectral_DB, // white dwarf B (He I lines, no H or metals)
-  Spectral_DC, // white dwarf C, continuous spectrum
-  Spectral_DO, // white dwarf O, He II strong, He I or H
-  Spectral_DQ, // white dwarf Q, carbon features
-  Spectral_DZ, // white dwarf Z, metal lines only, no H or He
-  Spectral_D, // generic white dwarf, no additional data
+  Spectral_DA,
+  Spectral_DB,
+  Spectral_DC,
+  Spectral_DO,
+  Spectral_DQ,
+  Spectral_DZ,
+  Spectral_D,
   Spectral_DX,
-  Spectral_Count
+  Spectral_Count,
 }
 
 enum LuminosityClass {
@@ -81,6 +81,7 @@ const LumStrClasses = [
   'V',
   'VI'
 ]
+
 const SubClassUnknown = 10
 const WDClassCount = 8
 
@@ -243,7 +244,7 @@ function encodeSpectralClass (st: string): number {
         break
 
       case ParseState.NormalStarSubclassState:
-        if (c.match(/[0-9]/)) {
+        if (c !== null && c.match(/[0-9]/)) {
           subClass = parseInt(c)
           state = ParseState.NormalStarSubclassDecimalState
           ++i
@@ -294,7 +295,7 @@ function encodeSpectralClass (st: string): number {
             break
 
           case 'V':
-            lumClass = LuminosityClass.Lum_Ib
+            lumClass = LuminosityClass.Lum_IV
             state = ParseState.EndState
             break
 
@@ -459,14 +460,14 @@ function encodeSpectralClass (st: string): number {
     }
   }
 
-  const buffer = Buffer.alloc(4)
+  let buffer = 0
 
-  buffer.writeUInt8(starType, 0)
-  buffer.writeUInt8(specClass, 1)
-  buffer.writeUInt8(subClass, 2)
-  buffer.writeUInt8(lumClass, 3)
+  buffer += starType << 12
+  buffer += specClass << 8
+  buffer += subClass << 4
+  buffer += lumClass
 
-  return buffer.readUInt32LE(0)
+  return buffer
 }
 
 export default encodeSpectralClass

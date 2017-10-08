@@ -20,7 +20,7 @@ class DATWriter extends BinaryWriter {
       buffer.writeFloatLE(items[i].properties.Distance, offset + 4, true)
       buffer.writeFloatLE(items[i].properties.RA, offset + 8, true)
       buffer.writeFloatLE(items[i].properties.Dec, offset + 12, true)
-      buffer.writeInt16LE(items[i].properties.AppMag, offset + 16, true)
+      buffer.writeInt16LE(items[i].properties.AbsMag, offset + 16, true)
       buffer.writeUInt16LE(encodeSpectralClass(items[i].properties.SpectralType), offset + 18, true)
       offset += 20
     }
