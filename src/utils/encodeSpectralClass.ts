@@ -338,6 +338,7 @@ function encodeSpectralClass (st: string): number {
         switch (c) {
           case 'a':
             state = ParseState.LumClassIaState
+            ++i
             break
 
           case 'b':
@@ -447,9 +448,11 @@ function encodeSpectralClass (st: string): number {
         break
 
       case ParseState.WDSubclassState:
-        if (c.match(/[0-9]/)) {
+        if (c !== null && c.match(/[0-9]/)) {
           subClass = parseInt(c)
           i++
+        } else {
+          subClass = Unknown.Subclass_Unknown
         }
         state = ParseState.EndState
         break
@@ -462,10 +465,10 @@ function encodeSpectralClass (st: string): number {
 
   let buffer = 0
 
-  buffer += starType << 12
-  buffer += specClass << 8
-  buffer += subClass << 4
-  buffer += lumClass
+  buffer += (starType & 0xf) << 12
+  buffer += (specClass & 0xf) << 8
+  buffer += (subClass & 0xf) << 4
+  buffer += (lumClass & 0xf)
 
   return buffer
 }
