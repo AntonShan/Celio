@@ -2,16 +2,16 @@ import { Celio } from '../../src/Celio'
 
 async function run (): Promise<void> {
   try {
-    const stars = await Celio.read('./input/stars.dat')
-    await Celio.write('./output/stars.dat', stars)
+    const originalStars = await Celio.read('./input/stars.dat')
+    await Celio.write('./output/stars.dat', originalStars)
     const writtenStars = await Celio.read('./output/stars.dat')
 
-    const differentStars: any[] = stars.reduce((acc: any[], value: any, index: number) => {
+    const differentStars: any[] = originalStars.reduce((acc: any[], value: any, index: number) => {
       if (!objectEquals(value, writtenStars[index])) {
         acc.push({
           index,
-          one: value,
-          another: writtenStars[index]
+          original: value,
+          written: writtenStars[index]
         })
       }
 

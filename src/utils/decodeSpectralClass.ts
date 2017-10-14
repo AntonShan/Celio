@@ -33,6 +33,34 @@ enum SpectralClass {
   Spectral_Count
 }
 
+enum SpectralClassStr {
+  O,
+  B,
+  A,
+  F,
+  G,
+  K,
+  M,
+  R, // superceded by class C
+  S,
+  N, // superceded by class C
+  WC,
+  WN,
+  '',
+  L,
+  T,
+  C,
+  DA, // white dwarf A (Balmer lines, no He I or metals)
+  DB, // white dwarf B (He I lines, no H or metals)
+  DC, // white dwarf C, continuous spectrum
+  DO, // white dwarf O, He II strong, He I or H
+  DQ, // white dwarf Q, carbon features
+  DZ, // white dwarf Z, metal lines only, no H or He
+  D, // generic white dwarf, no additional data
+  DX,
+  Count
+}
+
 enum LuminosityClass {
   Lum_Ia0,
   Lum_Ia,
@@ -44,6 +72,19 @@ enum LuminosityClass {
   Lum_VI,
   Lum_Unknown,
   Lum_Count
+}
+
+enum LuminosityClassStr {
+  Ia0,
+  Ia,
+  Ib,
+  II,
+  III,
+  IV,
+  V,
+  VI,
+  '',
+  Count
 }
 
 const LumStrClasses = [
@@ -104,11 +145,15 @@ const decodeSpectralClass = (st: number): string => {
   let lumClass
 
   if (stellarClass.starType === StarType.WhiteDwarf) {
-    specClass = 'WD'
+    specClass = SpectralClassStr[stellarClass.specClass]
+    subClass = '0123456789'[stellarClass.subClass] || ''
+    lumClass = LuminosityClassStr[stellarClass.lumClass]
   } else if (stellarClass.starType === StarType.NeutronStar) {
     specClass = 'Q'
   } else if (stellarClass.starType === StarType.BlackHole) {
     specClass = 'X'
+    subClass = ''
+    lumClass = ''
   } else if (stellarClass.starType === StarType.NormalStar) {
     specClass = 'OBAFGKMRSNWW?LTC'[stellarClass.specClass] || ''
     subClass = '0123456789'[stellarClass.subClass] || ''
