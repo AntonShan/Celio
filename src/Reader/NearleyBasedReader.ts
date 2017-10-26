@@ -16,7 +16,13 @@ class NearleyBasedReader implements AbstractReader {
           return reject(error)
         }
 
-        resolve(this.parser.feed(data).results[0])
+        const result = this.parser.feed(data).results[0]
+
+        if (result === void 0) {
+          reject(`Unable to read file ${filePath}`)
+        } else {
+          resolve(result)
+        }
       })
     })
   }

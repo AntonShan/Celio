@@ -1,26 +1,20 @@
-@{%
-  const sscBlueprint = {
-    mode: 'Add',
-    type: 'Body',
-    primaryName: null,
-    parentName: null,
-    names: [],
-    properties: {}
-  }
-%}
 @include "common.ne"
 
 SSC_CATALOG -> SSC_DEFINITION:* {% id %}
 
 SSC_DEFINITION -> WS:* SSC_OBJECT_MODE:? SSC_OBJECT_TYPE:? SSC_NAME SSC_PARENT_NAME SSC_PROPERTIES {%
-  ([, mode = 'Add', type = 'Body', name, parentName, properties], l) => {
-    const names = name.split(':')
-
-    return Object.assign(
-      {},
-      sscBlueprint,
-      { mode, type, names, parentName, properties }
-    )
+  ([, mode = 'Add', type = 'Body', name, pathToParent, properties]) => {
+    return {
+      meta: {
+        mode: mode !== null ? mode : 'Add',
+        modeSet: mode !== null,
+        type: type !== null ? type : 'Body',
+        typeSet: type !== null,
+        names: name.split(':'),
+        pathToParent: pathToParent.split('/')
+      },
+      properties
+    }
   }
 %}
 

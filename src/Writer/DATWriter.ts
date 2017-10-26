@@ -16,7 +16,7 @@ class DATWriter extends BinaryWriter {
     let offset = headerOffset
 
     for (let i = 0; i < itemsCount; ++i) {
-      buffer.writeUInt32LE(items[i].number, offset, true)
+      buffer.writeUInt32LE(items[i].meta.number, offset, true)
       buffer.writeFloatLE(items[i].properties.Distance, offset + 4, true)
       buffer.writeFloatLE(items[i].properties.RA, offset + 8, true)
       buffer.writeFloatLE(items[i].properties.Dec, offset + 12, true)

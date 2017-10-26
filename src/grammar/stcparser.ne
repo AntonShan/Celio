@@ -1,14 +1,6 @@
 @{%
   const validModes = ['Modify', 'Add', 'Replace']
   const validTypes = ['Star', 'Barycenter']
-
-  const objectBlueprint = {
-    mode: 'Add',
-    type: 'Star',
-    name: null,
-    number: null,
-    properties: {}
-  }
 %}
 @include "common.ne"
 
@@ -33,15 +25,18 @@ STC_DEFINITION -> WS:* STC_OBJECT_MODE:? STC_OBJECT_TYPE:? STC_HIP_NUMBER:? STC_
       }
     }
 
-    return Object.assign(
-      {},
-      objectBlueprint,
-      (type !== null ? { type } : {}),
-      (mode !== null ? { mode } : {}),
-      (name !== null ? { name } : {}),
-      (number !== null ? { number } : {}),
-      { properties }
-    )
+    return {
+      meta:{
+        mode: mode !== null ? mode : 'Add',
+        modeSet: mode !== null,
+        type: type !== null ? type : 'Star',
+        typeSet: type !== null,
+        names: name !== null ? name.split(':') : [],
+        nameSet: name !== null,
+        number: number !== null ? number : {}
+      },
+      properties
+    }
   }
 %}
 

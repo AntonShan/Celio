@@ -1,6 +1,6 @@
-import TextWriter from './TextWriter'
+import ConfigWriter from './ConfigWriter'
 
-class DSCWriter extends TextWriter {
+class DSCWriter extends ConfigWriter {
   writeHeader (value: any): string {
     return ''
   }
