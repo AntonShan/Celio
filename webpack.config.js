@@ -26,5 +26,9 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build')
+  },
+  watch: true,
+  watchOptions: {
+    aggregateTimeout: 1000
   }
 }

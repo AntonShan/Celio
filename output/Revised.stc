@@ -1,0 +1,747 @@
+207 {
+  RA 0.650343
+  Dec 66.098962
+  Distance 2077
+  AppMag 5.87
+  SpectralType "G8III"
+}
+
+Modify  3829 {
+  SpectralType "DZ8"
+}
+
+4266 {
+  RA 13.639933
+  Dec -82.66932
+  Distance 1707.6806
+  AppMag 8.39
+  SpectralType "M0"
+}
+
+5165 {
+  RA 16.521284
+  Dec -46.718496
+  Distance 198
+  AppMag 3.32
+  SpectralType "G8IIIvar"
+}
+
+Modify  5336 {
+  SpectralType "G5VIp"
+}
+
+5743 {
+  RA 18.438228
+  Dec 7.578382
+  Distance 173.863006
+  AppMag 6.44
+  SpectralType "F7V"
+}
+
+6242 {
+  RA 20.02049
+  Dec 58.231616
+  Distance 2330
+  AppMag 4.95
+  SpectralType "F0Ia"
+}
+
+Modify  8709 {
+  SpectralType "DA3"
+}
+
+Modify  9640 {
+  SpectralType "K3II"
+}
+
+10180 {
+  RA 32.723629
+  Dec 39.043337
+  Distance 455.540503
+  AppMag 6.82
+  SpectralType "A1Vn"
+}
+
+Modify  10267 {
+  SpectralType "G0"
+}
+
+Modify  10280 {
+  SpectralType "G5III"
+}
+
+Modify  11644 {
+  SpectralType "A9V"
+}
+
+Modify  11650 {
+  SpectralType "DA3"
+}
+
+12031 {
+  RA 38.781441
+  Dec 3.73243
+  Distance 242.681
+  AppMag 8.39
+  SpectralType "DA1"
+}
+
+Modify  14754 {
+  SpectralType "DA3"
+}
+
+Modify  17797 {
+  SpectralType "B9V"
+}
+
+Modify  21088 {
+  SpectralType "M4V"
+}
+
+21148 {
+  RA 68.007681
+  Dec 53.910846
+  Distance 3262
+  AppMag 5.78
+  SpectralType "B0III SB"
+}
+
+Modify  21392 {
+  SpectralType "K5"
+}
+
+21986 {
+  RA 70.894698
+  Dec -8.794246
+  Distance 406
+  AppMag 5.98
+  SpectralType "F4IIIp (Sr)"
+}
+
+22024 {
+  RA 71.022158
+  Dec -8.503574
+  Distance 1342
+  AppMag 5.78
+  SpectralType "B2Ve"
+}
+
+Modify  22767 {
+  SpectralType "A0"
+}
+
+Modify  23692 {
+  SpectralType "DA1"
+}
+
+Modify  24186 {
+  SpectralType "M1VI"
+}
+
+Modify  24608 {
+  SpectralType "G5III"
+}
+
+25950 {
+  RA 83.058936
+  Dec 17.058153
+  Distance 1117
+  AppMag 5.5
+  SpectralType "B7III"
+}
+
+25984 {
+  RA 83.181975
+  Dec 32.192031
+  Distance 4077
+  AppMag 4.71
+  SpectralType "B5Iab"
+}
+
+26220 {
+  RA 83.815887
+  Dec -5.38728
+  Distance 1400
+  AppMag 4.98
+  SpectralType "O7"
+}
+
+26221 {
+  RA 83.818609
+  Dec -5.389697
+  Distance 1400
+  AppMag 5.13
+  SpectralType "O6"
+}
+
+26224 {
+  RA 83.82186
+  Dec -5.388025
+  Distance 1400
+  AppMag 6.71
+  SpectralType "B0.5Vp..."
+}
+
+Modify  26235 {
+  Distance 1400
+}
+
+26536 {
+  RA 84.658748
+  Dec 30.492442
+  Distance 447
+  AppMag 5.4
+  SpectralType "A2V + GIII"
+}
+
+26549 {
+  RA 84.686525
+  Dec -2.600066
+  Distance 1148
+  AppMag 3.77
+  SpectralType "O9.5V..."
+}
+
+28814 {
+  RA 91.243166
+  Dec 4.158676
+  Distance 2490
+  AppMag 5.63
+  SpectralType "G4III"
+}
+
+29225 {
+  RA 92.433272
+  Dec 23.113469
+  Distance 14181
+  AppMag 5.75
+  SpectralType "B2.5Ib"
+}
+
+29450 {
+  RA 93.079578
+  Dec 22.908519
+  Distance 4300
+  SpectralType "M1Ia-ab"
+  AppMag 6.51
+}
+
+Modify  29564 {
+  SpectralType "K5"
+}
+
+29840 {
+  RA 94.244605
+  Dec 23.740915
+  Distance 2091
+  SpectralType "B3Ia"
+  AppMag 6.24
+}
+
+30089 {
+  RA 94.992593
+  Dec -10.637364
+  Distance 1245
+  SpectralType "B8"
+  AppMag 8.85
+}
+
+30756 {
+  RA 96.941434
+  Dec 20.78323
+  Distance 58.747658
+  SpectralType "G0"
+  AppMag 8.31
+}
+
+30827 {
+  RA 97.142036
+  Dec 30.493069
+  Distance 1561
+  AppMag 5.75
+  SpectralType "F5.5Ibv"
+}
+
+31579 {
+  RA 99.136823
+  Dec 38.445552
+  Distance 1812
+  AppMag 5.4
+  SpectralType "C5II"
+}
+
+Modify  32349 {
+  SpectralType "A1V"
+}
+
+Modify  32560 {
+  SpectralType "DA2"
+}
+
+33152 {
+  RA 103.533145
+  Dec -24.184224
+  Distance 1977
+  AppMag 3.89
+  SpectralType "K3Iab"
+}
+
+Modify  33226 {
+  SpectralType "M3V"
+}
+
+34360 {
+  RA 106.844121
+  Dec -23.840735
+  Distance 2965
+  AppMag 5.75
+  SpectralType "B2V:nn"
+}
+
+35488 {
+  RA 109.867769
+  Dec -44.5865
+  Distance 1600
+  AppMag 9.96
+  SpectralType "A6IIIe"
+}
+
+35783 {
+  RA 110.711878
+  Dec 55.28439
+  Distance 458
+  AppMag 6.86
+  SpectralType "B9V"
+}
+
+35785 {
+  RA 110.716924
+  Dec 55.28147
+  Distance 458
+  AppMag 5.8
+  SpectralType "B8V"
+}
+
+37842 {
+  RA 116.369757
+  Dec -14.686118
+  Distance 253.826459
+  AppMag 7.03
+  SpectralType "A0/A1V"
+}
+
+Modify  40765 {
+  SpectralType "G1V"
+}
+
+41074 {
+  RA 125.708081
+  Dec -26.348236
+  Distance 2965
+  AppMag 5.88
+  SpectralType "F2Iab"
+}
+
+Modify  43177 {
+  SpectralType "G0V"
+}
+
+Modify  45343 {
+  SpectralType "K7"
+}
+
+45982 {
+  RA 140.656353
+  Dec 50.603704
+  AppMag 9.06
+  Distance 220.1
+  SpectralType "G5"
+}
+
+45983 {
+  RA 140.665363
+  Dec 50.603848
+  AppMag 9.17
+  Distance 220.1
+  SpectralType "G5"
+}
+
+51192 {
+  RA 156.851992
+  Dec -57.638814
+  Distance 8000
+  AppMag 4.65
+  SpectralType "A6Ia"
+}
+
+52004 {
+  RA 159.362818
+  Dec -58.733347
+  Distance 8154
+  AppMag 5.47
+  SpectralType "A0Ia"
+}
+
+Modify  54061 {
+  SpectralType "K0Ib"
+}
+
+54461 {
+  RA 167.14169
+  Dec -61.94718
+  Distance 5528
+  AppMag 5.11
+  SpectralType "B9Ia"
+}
+
+54751 {
+  RA 168.150084
+  Dec -60.317631
+  Distance 12545
+  AppMag 4.59
+  SpectralType "A6Ia"
+}
+
+55203 {
+  RA 169.54545
+  Dec 31.528891
+  Distance 27.3
+  SpectralType "G0V"
+  AppMag 3.78
+}
+
+Modify  56662 {
+  SpectralType "DA3"
+}
+
+Modify  57367 {
+  SpectralType "DQ6"
+}
+
+57741 {
+  RA 177.613687
+  Dec -62.649384
+  Distance 3077
+  AppMag 5.68
+  SpectralType "A3Iab"
+}
+
+58427 {
+  RA 179.698619
+  Dec -64.339557
+  Distance 2836
+  AppMag 5.59
+  SpectralType "A3Ib"
+}
+
+59517 {
+  RA 183.09161
+  Dec -62.950773
+  Distance 4868
+  AppMag 5.91
+  SpectralType "B9Ia"
+}
+
+62931 {
+  RA 193.453847
+  Dec -60.376241
+  Distance 6400
+  AppMag 5.89
+  SpectralType "B5Ia"
+}
+
+64094 {
+  RA 197.029828
+  Dec -65.306018
+  Distance 12545
+  AppMag 5.44
+  SpectralType "WC6 + O9.5I"
+}
+
+Modify  65877 {
+  SpectralType "DA5"
+}
+
+Modify  66578 {
+  SpectralType "DA3"
+}
+
+66984 {
+  RA 205.917063
+  Dec -42.06751
+  Distance 1591
+  AppMag 5.96
+  SpectralType "B8III"
+}
+
+67861 {
+  RA 208.488529
+  Dec -47.128154
+  Distance 2330
+  AppMag 5.83
+  SpectralType "B2IIIe"
+}
+
+71500 {
+  RA 219.334022
+  Dec -46.133415
+  Distance 1337
+  AppMag 5.39
+  SpectralType "K0III"
+}
+
+Modify  72105 {
+  SpectralType "K0III"
+}
+
+74184 {
+  RA 227.374664
+  Dec -67.084128
+  Distance 9319
+  AppMag 5.76
+  SpectralType "F8Iab-Ib"
+}
+
+77442 {
+  RA 237.143401
+  Dec 28.156776
+  Distance 6040
+  AppMag 5.89
+  SpectralType "F8"
+}
+
+77501 {
+  RA 237.380447
+  Dec 39.571672
+  Distance 2760
+  AppMag 9.33
+  SpectralType "N9"
+}
+
+78727 {
+  RA 241.09245
+  Dec -11.372945
+  Distance 58.5473
+  SpectralType "F6IV"
+  AppMag 4.16016
+}
+
+79045 {
+  RA 242.020707
+  Dec 17.054452
+  Distance 367.719278
+  SpectralType "K1III"
+  AppMag 6.25
+}
+
+Modify  79607 {
+  SpectralType "G0V"
+}
+
+Modify  80300 {
+  SpectralType "DA2"
+}
+
+81702 {
+  RA 250.335065
+  Dec -48.762969
+  Distance 3800
+  AppMag 5.57
+  SpectralType "O5"
+}
+
+Modify  82257 {
+  SpectralType "DAV4"
+}
+
+Modify  84123 {
+  SpectralType "M3V"
+}
+
+Modify  84140 {
+  SpectralType "M3V"
+}
+
+Modify  84405 {
+  SpectralType "K1V"
+}
+
+Modify  84720 {
+  SpectralType "G8V"
+}
+
+Modify  85523 {
+  SpectralType "M3V"
+}
+
+86961 {
+  RA 266.5527
+  Dec -32.10355
+  Distance 20.162391
+  SpectralType "M2V:"
+  AppMag 10.4883
+}
+
+87706 {
+  RA 268.72518
+  Dec -24.887088
+  Distance 8180
+  SpectralType "O8III"
+  AppMag 6.198
+}
+
+Modify  88267 {
+  SpectralType "A5III"
+}
+
+88298 {
+  RA 270.476587
+  Dec -22.780291
+  Distance 2700
+  AppMag 5.72
+  SpectralType "B0Iab..."
+}
+
+88522 {
+  RA 271.15565
+  Dec 1.919007
+  Distance 5800
+  SpectralType "B0III"
+  AppMag 6.15
+}
+
+89341 {
+  RA 273.440869
+  Dec -21.058831
+  Distance 4000
+  AppMag 3.84
+  SpectralType "B2III:"
+}
+
+89439 {
+  RA 273.803772
+  Dec -20.728267
+  Distance 4000
+  AppMag 5.29
+  SpectralType "B0/1Ia/ab"
+}
+
+89440 {
+  RA 273.804038
+  Dec -20.38797
+  Distance 4000
+  AppMag 5.96
+  SpectralType "B0.5Ib/II"
+}
+
+Modify  91768 {
+  SpectralType "M3V"
+}
+
+Modify  91772 {
+  SpectralType "M3V"
+}
+
+Modify  95071 {
+  SpectralType "DBZ5"
+}
+
+96295 {
+  RA 293.688479
+  Dec 30.516395
+  Distance 7000
+  SpectralType "WC..."
+  AppMag 10
+}
+
+96840 {
+  RA 295.273034
+  Dec 13.815708
+  Distance 1647
+  AppMag 5.98
+  SpectralType "B5V"
+}
+
+97796 {
+  RA 298.090687
+  Dec 18.6719
+  Distance 14000
+  AppMag 6.25
+  SpectralType "O8e"
+}
+
+101120 {
+  RA 307.46907
+  Dec -18.586163
+  Distance 162.191
+  SpectralType "A8V"
+  AppMag 6.74
+}
+
+Modify  101516 {
+  SpectralType "DA3"
+}
+
+Modify  102207 {
+  SpectralType "DA3"
+}
+
+Modify  103039 {
+  SpectralType "M"
+}
+
+103312 {
+  RA 313.957524
+  Dec 47.417665
+  Distance 9319
+  AppMag 5.68
+  SpectralType "B8Ia"
+}
+
+Modify  105259 {
+  SpectralType "M1Ib"
+}
+
+Modify  105680 {
+  SpectralType "B"
+}
+
+105811 {
+  RA 321.445917
+  Dec 36.667407
+  Distance 2764
+  AppMag 5.93
+  SpectralType "B0Ib"
+}
+
+106801 {
+  RA 324.480111
+  Dec 62.081946
+  Distance 4530
+  AppMag 4.76
+  SpectralType "B2Ib"
+}
+
+107930 {
+  RA 328.004257
+  Dec 55.796744
+  Distance 643
+  AppMag 5.7
+  SpectralType "B6IV-V"
+}
+
+Modify  107968 {
+  SpectralType "DA3"
+}
+
+Modify  108317 {
+  SpectralType "M2Ia"
+}
+
+112247 {
+  RA 341.031251
+  Dec 55.589228
+  Distance 2330
+  AppMag 8.82
+  SpectralType "A0p"
+}

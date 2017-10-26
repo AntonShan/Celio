@@ -22,7 +22,7 @@ class DATReader implements AbstractReader {
     let starNumber = 0
     while (starNumber < starsInFile) {
       let offset = Constants.HEADER_OFFSET + starNumber * 20
-      let number = data.readUInt32LE(offset)
+      let catalogNumber = data.readUInt32LE(offset)
       let Distance = data.readFloatLE(offset + 4)
       let RA = data.readFloatLE(offset + 8)
       let Dec = data.readFloatLE(offset + 12)
@@ -30,9 +30,11 @@ class DATReader implements AbstractReader {
       let SpectralType = decodeSpectralClass(data.readUInt16LE(offset + 18))
 
       result.push({
-        type: 'Star',
-        mode: 'ModifyStar',
-        number,
+        meta: {
+          type: 'Star',
+          mode: 'ModifyStar',
+          number: catalogNumber
+        },
         properties: {
           Distance,
           RA,

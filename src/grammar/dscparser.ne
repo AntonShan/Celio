@@ -1,22 +1,4 @@
 @{%
-  const dsoBlueprint = {
-    type: null,
-    names: [],
-    number: null,
-    properties: {
-      RA: null,
-      Dec: null,
-      Distance: null,
-      Radius: null,
-      CoreRadius: null,
-      KingConcentration: null,
-      AbsMag: null,
-      Axis: [],
-      Angle: null,
-      InfoURL: null
-    }
-  }
-
   let globalId = 0
 %}
 @include "common.ne"
@@ -24,18 +6,19 @@
 DSC_CATALOG -> DSC_DEFINITION:* {% id %}
 
 DSC_DEFINITION -> WS:* DSC_NUMBER:? DSC_OBJECT_TYPE DSC_NAME DSC_PROPERTIES {%
-  ([, number, type, name, properties], l) => {
+  ([, number, type, name, properties]) => {
     if (number === null) {
       number = globalId++
     }
 
-    const names = name.split(':')
-
-    return Object.assign(
-      {},
-      dsoBlueprint,
-      { type, number, names, properties }
-    )
+    return {
+      meta: {
+        type,
+        number,
+        names: name.split(':')
+      },
+      properties
+    }
   }
 %}
 

@@ -1,3 +1,3 @@
-import DATTest from './tests/stars.dat/index'
+import { Celio } from './src/Celio'
 
-DATTest()
+export default Celio

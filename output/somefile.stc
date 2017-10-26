@@ -1,0 +1,12 @@
+Modify  26235 {
+  SomeSingleProperty 42
+}
+
+Replace  100500 {
+  AnotherSingleProperty 69
+}
+
+Modify  1024 {
+  FirstProperty 1
+  SecondProperty 1
+}

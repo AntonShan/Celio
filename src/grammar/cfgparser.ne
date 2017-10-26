@@ -1,9 +1,6 @@
 @include "common.ne"
 
-CONFIG -> CONFIG_KEYWORD CONFIG_DESCRIPTION {% ([keyword, params]) => {
-  debugger
-  return params
-} %}
+CONFIG -> CONFIG_KEYWORD CONFIG_DESCRIPTION {% ([keyword, params]) => params %}
 
 CONFIG_KEYWORD -> WS:* %CONFIG_KEYWORD WS:* {% ([keyword]) => keyword[0] %}
 
