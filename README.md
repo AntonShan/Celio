@@ -8,7 +8,7 @@ This project is not ready for usage in apps but is already able to somewhat prop
 
 ```js
 const path = require('path')
-const Celio = require('src/Celio/Celio')
+const Celio = require('celio')
 
 const inputFile = path.resolve('Celestia/data/Revised.stc')
 

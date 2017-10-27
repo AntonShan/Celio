@@ -2,7 +2,7 @@
   "name": "celio",
   "version": "0.0.1",
   "description": "Celestia catalogue files parser",
-  "main": "index.ts",
+  "main": "dist/bundle.js",
   "devDependencies": {
     "@types/nearley": "^2.11.0",
     "@types/node": "^8.0.31",
@@ -11,8 +11,17 @@
     "tslint": "^5.7.0",
     "tslint-config-standard": "^6.0.1",
     "typescript": "^2.5.3",
+    "uglifyjs-webpack-plugin": "^1.0.1",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.3"
+  },
+  "repository": {
+    "url": "https://github.com/AntonShan/Celio.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url" : "https://github.com/AntonShan/Celio/issues",
+    "email" : "barsiktheswagoverlord@gmail.com"
   },
   "scripts": {
     "dev": "webpack-dev-server"
