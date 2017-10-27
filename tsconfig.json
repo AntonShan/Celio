@@ -10,9 +10,6 @@
     ],
     "moduleResolution": "node"
   },
-  "files": [
-    "./test/index.ts"
-  ],
   "exclude": [
     "node_modules"
   ],
