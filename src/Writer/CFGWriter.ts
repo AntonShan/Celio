@@ -2,7 +2,7 @@ import ConfigWriter from './ConfigWriter'
 
 class DSCWriter extends ConfigWriter {
   writeHeader (value: any): string {
-    return ''
+    return 'Configuration '
   }
 }
 

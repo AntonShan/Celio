@@ -1,21 +1,13 @@
-import * as fs from 'fs'
 import AbstractWriter from './AbstractWriter'
 
 abstract class BinaryWriter implements AbstractWriter {
-  defaultWriteMode = {
-    mode: 0o644,
-    flag: 'w+'
-  }
-
-  write (fullPath: string, items: any[], options = this.defaultWriteMode): Promise<void> {
+  write (type: string, items: any[]): Promise<Buffer> {
     return new Promise((resolve, reject) => {
-      fs.writeFile(fullPath, this.process(items), options, (error) => {
-        if (error) {
-          return reject(error)
-        }
-
-        return resolve()
-      })
+      try {
+        resolve(this.process(items))
+      } catch (error) {
+        reject(error)
+      }
     })
   }
 

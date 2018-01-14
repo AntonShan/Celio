@@ -1,5 +1,5 @@
 interface AbstractReader {
-  read (fileName: string): Promise<any[]>
+  read (fileName: Buffer | string): Promise<any[]>
 }
 
 export default AbstractReader

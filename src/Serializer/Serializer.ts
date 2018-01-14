@@ -1,7 +1,19 @@
-import isObject from 'lodash-es/isObject'
-import isArray from 'lodash-es/isArray'
-import isNumber from 'lodash-es/isNumber'
-import isString from 'lodash-es/isString'
+function isObject (value: any): boolean {
+  const type = typeof value
+  return value != null && (type == 'object' || type == 'function')
+}
+
+function isArray (value: any): value is any[] {
+  return Array.isArray(value)
+}
+
+function isNumber (value: any): value is number {
+  return typeof value == 'number'
+}
+
+function isString (value: any): value is string {
+  return typeof value === 'string'
+}
 
 export default class Serializer {
   static stringify (value: any, indent = 0): string {

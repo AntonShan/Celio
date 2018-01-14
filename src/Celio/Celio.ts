@@ -1,23 +1,15 @@
-import * as path from 'path'
 import { Injector } from '../Injector'
 
-class Celio {
-  static read (filePath: string): Promise<any[]> {
-    const fullPath = path.resolve(filePath)
-    const fileExtension = path.extname(fullPath)
-    const type = fileExtension.split('.')[1]
+export class Celio {
+  static read (buffer: Buffer, type: string): Promise<any[]> {
     const Reader = Injector.makeReader(type)
 
-    return Reader.read(fullPath)
+    return Reader.read(buffer)
   }
 
-  static write (filePath: string, items: any[]): Promise<void> {
-    const fileExtension = path.extname(filePath)
-    const type = fileExtension.split('.')[1]
+  static write (type: string, items: any[]): Promise<Buffer | string> {
     const Writer = Injector.makeWriter(type)
 
-    return Writer.write(filePath, items)
+    return Writer.write(type, items)
   }
 }
-
-export default Celio

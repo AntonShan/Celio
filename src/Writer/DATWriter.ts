@@ -1,17 +1,17 @@
 import BinaryWriter from './BinaryWriter'
-import Constants from '../utils/Constants'
+import META from '../utils/DatMeta'
 import { encodeSpectralClass } from '../utils'
 
 class DATWriter extends BinaryWriter {
   process (items: any[]): Buffer {
-    const header = Constants.FILE_HEADER
-    const version = Constants.VERSION   // 2 bytes
+    const header = META.FILE_HEADER
+    const version = META.VERSION   // 2 bytes
     const itemsCount = items.length     // 4 bytes
     const headerOffset = header.length + 6
     const buffer = Buffer.alloc(headerOffset + itemsCount * 20)
     buffer.write(header, 0)
-    buffer.writeUInt16LE(version, Constants.FILE_HEADER.length)
-    buffer.writeUInt32LE(itemsCount, Constants.FILE_HEADER.length + 2)
+    buffer.writeUInt16LE(version, META.FILE_HEADER.length)
+    buffer.writeUInt32LE(itemsCount, META.FILE_HEADER.length + 2)
 
     let offset = headerOffset
 

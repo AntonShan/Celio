@@ -1,25 +1,14 @@
-import * as fs from 'fs'
 import AbstractWriter from './AbstractWriter'
 import { Serializer } from '../Serializer'
 
 abstract class TextWriter implements AbstractWriter {
-  defaultWriteMode = {
-    encoding: 'utf-8',
-    mode: 0o644,
-    flag: 'w'
-  }
-
-  write (fullPath: string, items: any[], options = this.defaultWriteMode): Promise<void> {
+  write (type: string, items: any[]): Promise<string> {
     return new Promise((resolve, reject) => {
-      const output = this.transform(items)
-
-      fs.writeFile(fullPath, output, options, (error) => {
-        if (error) {
-          return reject(error)
-        }
-
-        return resolve()
-      })
+      try {
+        return resolve(this.transform(items))
+      } catch (error) {
+        reject(error)
+      }
     })
   }
 

@@ -4,6 +4,7 @@
     "target": "es2016",
     "removeComments": true,
     "sourceMap": true,
+    "module": "commonjs",
     "typeRoots": [
       "./node_modules/@types",
       "./src/types"

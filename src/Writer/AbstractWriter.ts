@@ -1,5 +1,5 @@
 interface AbstractWriter {
-  write (fullPath: string, items: any[], options?: any): Promise<void>
+  write (type: string, items: any[]): Promise<Buffer | string>
 }
 
 export default AbstractWriter

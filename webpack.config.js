@@ -1,8 +1,8 @@
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const path = require('path')
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: './src/Celio/Celio.ts',
   devtool: 'inline-source-map',
   module: {
     rules: [
@@ -25,7 +25,7 @@ module.exports = {
   // ],
   target: 'node',
   resolve: {
-    extensions: [ '.ts', '.js' ]
+    extensions: [ '.ts' ]
   },
   output: {
     filename: 'bundle.js',

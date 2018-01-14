@@ -4,8 +4,6 @@
   "description": "Celestia catalogue files parser",
   "main": "dist/bundle.js",
   "devDependencies": {
-    "@types/nearley": "^2.11.0",
-    "@types/node": "^8.0.31",
     "nearley-webpack-loader": "^0.0.1",
     "ts-loader": "^2.3.7",
     "tslint": "^5.7.0",
@@ -20,15 +18,15 @@
     "type": "git"
   },
   "bugs": {
-    "url" : "https://github.com/AntonShan/Celio/issues",
-    "email" : "barsiktheswagoverlord@gmail.com"
+    "url": "https://github.com/AntonShan/Celio/issues",
+    "email": "barsiktheswagoverlord@gmail.com"
   },
   "scripts": {
     "dev": "webpack-dev-server"
   },
   "dependencies": {
-    "@types/lodash-es": "^4.14.7",
-    "lodash-es": "^4.17.4",
+    "@types/nearley": "^2.11.0",
+    "@types/node": "^8.0.31",
     "moo": "^0.4.3",
     "nearley": "^2.11.0"
   },

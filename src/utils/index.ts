@@ -1,11 +1,9 @@
-import Constants from './Constants'
-import Conversions from './Conversions'
+import META from './DatMeta'
 import decodeSpectralClass from './decodeSpectralClass'
 import encodeSpectralClass from './encodeSpectralClass'
 
 export {
-  Constants,
-  Conversions,
+  META,
   decodeSpectralClass,
   encodeSpectralClass
 }
