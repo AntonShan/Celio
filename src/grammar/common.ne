@@ -45,8 +45,8 @@
       lineBreaks: true
     },
     COMMENT: {
-      match: /#.*?\r\n/,
-      lineBreaks: true
+      match: /#.*/,
+      lineBreaks: false
     }
   })
 %}
@@ -82,3 +82,5 @@ STRING -> %STRING {% data => data[0].value.split('"')[1] %}
 
 WS -> %WS {% nuller %}
   | %COMMENT {% nuller %}
+
+COMMENT -> %COMMENT %WS {% nuller %}

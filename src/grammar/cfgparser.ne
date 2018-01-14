@@ -1,6 +1,6 @@
 @include "common.ne"
 
-CONFIG -> CONFIG_KEYWORD CONFIG_DESCRIPTION {% ([keyword, params]) => params %}
+CONFIG -> WS:* CONFIG_KEYWORD CONFIG_DESCRIPTION {% ([_ws, keyword, params]) => params %}
 
 CONFIG_KEYWORD -> WS:* %CONFIG_KEYWORD WS:* {% ([keyword]) => keyword[0] %}
 

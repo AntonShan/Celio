@@ -22,13 +22,15 @@
     "email": "barsiktheswagoverlord@gmail.com"
   },
   "scripts": {
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "build": "webpack"
   },
   "dependencies": {
     "@types/nearley": "^2.11.0",
     "@types/node": "^8.0.31",
     "moo": "^0.4.3",
-    "nearley": "^2.11.0"
+    "nearley": "^2.11.0",
+    "nedb": "^1.8.0"
   },
   "author": "AntonShan",
   "license": "MIT"
