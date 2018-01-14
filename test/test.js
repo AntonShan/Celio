@@ -48,7 +48,10 @@ async function readCatalogs (list) {
       encoding: 'utf-8'
     })
 
-    return Celio.read(fileContents, extname(file).split('.')[1])
+    return Celio.read(fileContents, extname(file).split('.')[1]).catch((error) => {
+      console.error(`Unable to read file: ${file}\nMessage: ${error.message}`)
+      return error
+    })
   }))
 }
 
@@ -56,10 +59,9 @@ async function main () {
   const config = await readConfig()
   console.dir(config)
 
-  return 42
   const catalogs = [
-    // ...(config.StarCatalogs || []),
-    // ...(config.SolarSystemCatalogs || []),
+    ...(config.StarCatalogs || []),
+    ...(config.SolarSystemCatalogs || []),
     ...(config.DeepSkyCatalogs || [])
   ]
   const catalogObjects = await readCatalogs(catalogs)
