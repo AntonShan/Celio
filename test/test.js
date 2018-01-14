@@ -12,34 +12,21 @@ const configPath = resolve(join(celestiaPath, 'celestia.cfg'))
 
 function readFile (filepath, options = {}) {
   return new Promise((resolve, reject) => {
-    fs.readFile(filepath, options, (error, data) => {
-      return error
-        ? reject(error)
-        : resolve(data)
-    })
+    fs.readFile(filepath, options, (error, data) => error ? reject(error) : resolve(data))
   })
 }
 
 function writeFile (filePath, data, options = {}) {
   return new Promise((resolve, reject) => {
-    fs.writeFile(filePath, data, options, (error) => {
-      return error
-        ? reject(error)
-        : resolve()
-    })
+    fs.writeFile(filePath, data, options, (error) => error ? reject(error) : resolve())
   })
 }
 
 async function readConfig () {
-  try {
-    const fileData = await readFile(configPath, {
-      encoding: 'utf-8'
-    })
-    return await Celio.read(fileData, 'cfg')
-  } catch (error) {
-    console.log('Could not read configuration file')
-    console.error(error)
-  }
+  const fileData = await readFile(configPath, {
+    encoding: 'utf-8'
+  })
+  return Celio.read(fileData, 'cfg')
 }
 
 async function readCatalogs (list) {
@@ -50,7 +37,7 @@ async function readCatalogs (list) {
 
     return Celio.read(fileContents, extname(file).split('.')[1]).catch((error) => {
       console.error(`Unable to read file: ${file}\nMessage: ${error.message}`)
-      return error
+      return void 0
     })
   }))
 }
@@ -65,8 +52,7 @@ async function main () {
     ...(config.DeepSkyCatalogs || [])
   ]
   const catalogObjects = await readCatalogs(catalogs)
-  console.dir(catalogObjects)
-  await writeFile('catalogue.json', JSON.stringify(catalogObjects))
+  await writeFile('catalog.json', JSON.stringify(catalogObjects))
   console.log('write success')
 }
 

@@ -44,7 +44,7 @@ STC_PROPERTIES -> GROUP WS {% data => data[0] %}
 
 STC_HIP_NUMBER -> NUMBER WS:* {% data => data[0] %}
 
-STC_NAME -> STRING WS {% data => data[0] %}
+STC_NAME -> STRING WS:* {% data => data[0] %}
 
 STC_OBJECT_MODE -> %MODIFY_MODE WS {% data => data[0].value %}
   | %ADD_MODE WS {% data => data[0].value %}
