@@ -1,6 +1,6 @@
 {
   "name": "celio",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Celestia catalogue files parser",
   "main": "dist/bundle.js",
   "devDependencies": {
