@@ -1,11 +1,11 @@
 {
   "name": "celio",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Celestia catalogue files parser",
   "main": "dist/bundle.js",
   "keywords": [
-	"celestia",
-	"astronomy"
+    "celestia",
+    "astronomy"
   ],
   "devDependencies": {
     "nearley-webpack-loader": "^0.0.1",
