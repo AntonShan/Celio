@@ -3,6 +3,10 @@
   "version": "0.1.1",
   "description": "Celestia catalogue files parser",
   "main": "dist/bundle.js",
+  "keywords": [
+	"celestia",
+	"astronomy"
+  ],
   "devDependencies": {
     "nearley-webpack-loader": "^0.0.1",
     "ts-loader": "^2.3.7",
@@ -29,8 +33,7 @@
     "@types/nearley": "^2.11.0",
     "@types/node": "^8.0.31",
     "moo": "^0.4.3",
-    "nearley": "^2.11.0",
-    "nedb": "^1.8.0"
+    "nearley": "^2.11.0"
   },
   "author": "AntonShan",
   "license": "MIT"
