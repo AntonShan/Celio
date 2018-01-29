@@ -2,12 +2,15 @@
   "name": "celio",
   "version": "0.1.2",
   "description": "Celestia catalogue files parser",
-  "main": "dist/bundle.js",
+  "main": "dist/celio.common.js",
   "keywords": [
     "celestia",
     "astronomy"
   ],
   "devDependencies": {
+    "@types/nearley": "^2.11.0",
+    "@types/node": "^8.0.31",
+    "clean-webpack-plugin": "^0.1.18",
     "nearley-webpack-loader": "^0.0.1",
     "ts-loader": "^2.3.7",
     "tslint": "^5.7.0",
@@ -15,7 +18,7 @@
     "typescript": "^2.5.3",
     "uglifyjs-webpack-plugin": "^1.0.1",
     "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.9.3"
+    "webpack-merge": "^4.1.1"
   },
   "repository": {
     "url": "https://github.com/AntonShan/Celio.git",
@@ -26,12 +29,10 @@
     "email": "barsiktheswagoverlord@gmail.com"
   },
   "scripts": {
-    "dev": "webpack-dev-server",
     "build": "webpack"
   },
   "dependencies": {
-    "@types/nearley": "^2.11.0",
-    "@types/node": "^8.0.31",
+    "buffer": "^5.0.8",
     "moo": "^0.4.3",
     "nearley": "^2.11.0"
   },

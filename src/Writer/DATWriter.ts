@@ -1,9 +1,10 @@
-import BinaryWriter from './BinaryWriter'
-import META from '../utils/DatMeta'
-import { encodeSpectralClass } from '../utils'
+import { BinaryWriter } from './BinaryWriter'
+import { META } from '../utils'
+import { encodeSpectralClass } from '../SpectralTools'
+import { Buffer } from 'buffer/'
 
-class DATWriter extends BinaryWriter {
-  process (items: any[]): Buffer {
+export class DATWriter extends BinaryWriter {
+  async process (items: any[]): Promise<Buffer> {
     const header = META.FILE_HEADER
     const version = META.VERSION   // 2 bytes
     const itemsCount = items.length     // 4 bytes
@@ -24,8 +25,7 @@ class DATWriter extends BinaryWriter {
       buffer.writeUInt16LE(encodeSpectralClass(items[i].properties.SpectralType), offset + 18, true)
       offset += 20
     }
-    return buffer
+
+    return Promise.resolve(buffer)
   }
 }
-
-export default DATWriter

@@ -1,9 +1,7 @@
-import ConfigWriter from './ConfigWriter'
+import { ConfigWriter } from './ConfigWriter'
 
-class DSCWriter extends ConfigWriter {
+export class CFGWriter extends ConfigWriter {
   writeHeader (value: any): string {
     return 'Configuration '
   }
 }
-
-export default DSCWriter

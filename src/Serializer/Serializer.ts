@@ -1,22 +1,7 @@
-function isObject (value: any): boolean {
-  const type = typeof value
-  return value != null && (type == 'object' || type == 'function')
-}
+import { isArray, isObject, isString, isNumber } from '../utils'
 
-function isArray (value: any): value is any[] {
-  return Array.isArray(value)
-}
-
-function isNumber (value: any): value is number {
-  return typeof value == 'number'
-}
-
-function isString (value: any): value is string {
-  return typeof value === 'string'
-}
-
-export default class Serializer {
-  static stringify (value: any, indent = 0): string {
+export class Serializer {
+  static async stringify (value: any, indent = 0): Promise<string> {
     if (isObject(value)) {
       if (isArray(value)) {
         return Serializer.writeArray(value, indent)
@@ -29,40 +14,41 @@ export default class Serializer {
       } else if (isString(value)) {
         return Serializer.writeString(value)
       } else {
-        return String(value)
+        return Promise.resolve(String(value))
       }
     }
   }
 
-  static writeArray (array: any[], indent: number): string {
-    return '[ ' + array.map(function (item) {
+  static async writeArray (array: any[], indent: number): Promise<string> {
+    const values = await Promise.all(array.map((item) => {
       return Serializer.stringify(item, indent + 2)
-    }).join(' ') + ' ]'
+    }))
+
+    return '[ ' + values.join(' ') + ' ]'
   }
 
-  static writeObject (value: Object, indent: number): string {
+  static async writeObject (value: Object, indent: number): Promise<string> {
     if (Object.keys(value).length === 0) {
       return '{ }'
     }
 
-    const entries = Object.keys(value)
-      .map(function (key) {
-        return Serializer.writeField(key, Serializer.stringify(value[key], indent + 2), indent + 2)
-      })
-      .join('\n')
+    const entries = await Promise.all(Object.keys(value)
+      .map(async function (key) {
+        return Serializer.writeField(key, await Serializer.stringify(value[key], indent + 2), indent + 2)
+      }))
 
-    return '{\n' + entries + '\n' + ' '.repeat(indent) + '}'
+    return '{\n' + entries.join('\n') + '\n' + ' '.repeat(indent) + '}'
   }
 
-  static writeString (value: string): string {
-    return '"' + value + '"'
+  static async writeString (value: string): Promise<string> {
+    return Promise.resolve('"' + value + '"')
   }
 
-  static writeNumber (value: number, precision = 6): string {
-    return String(Math.floor(value * 10 ** precision) / 10 ** precision)
+  static async writeNumber (value: number, precision = 6): Promise<string> {
+    return Promise.resolve(String(Math.floor(value * 10 ** precision) / 10 ** precision))
   }
 
-  static writeField (key: string, value: string, indent: number): string {
-    return ' '.repeat(indent) + key + ' ' + value
+  static async writeField (key: string, value: string, indent: number): Promise<string> {
+    return Promise.resolve(' '.repeat(indent) + key + ' ' + value)
   }
 }

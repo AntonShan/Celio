@@ -1,13 +1,18 @@
-import TextWriter from './TextWriter'
+import { TextWriter } from './TextWriter'
 import { Serializer } from '../Serializer'
 
-class DSCWriter extends TextWriter {
-  writeHeader (value: any): string {
-    const catalogNumber = value.number !== null ? String(value.number) : ''
-    const type = value.type !== null ? value.type : ''
-    const name = value.names !== null ? Serializer.writeString(value.names.join(':')) : ''
+export class DSCWriter extends TextWriter {
+  async writeHeader (value: any): Promise<string> {
+    const [catalogNumber, type, name] = await Promise.all([
+      () => Promise.resolve(value.number !== null ? String(value.number) : ''),
+      () => Promise.resolve(value.type !== null ? value.type : ''),
+      async () => {
+        return value.names !== null
+          ? await Serializer.writeString(value.names.join(':'))
+          : ''
+      }
+    ])
+
     return [catalogNumber, type, name].join(' ')
   }
 }
-
-export default DSCWriter

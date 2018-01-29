@@ -1,17 +1,13 @@
-import AbstractWriter from './AbstractWriter'
+import { AbstractWriter } from './AbstractWriter'
 
-abstract class BinaryWriter implements AbstractWriter {
-  write (type: string, items: any[]): Promise<Buffer> {
-    return new Promise((resolve, reject) => {
-      try {
-        resolve(this.process(items))
-      } catch (error) {
-        reject(error)
-      }
-    })
+export abstract class BinaryWriter implements AbstractWriter {
+  async write (type: string, items: any[]): Promise<Buffer> {
+    try {
+      return Promise.resolve(this.process(items))
+    } catch (error) {
+      return Promise.reject(error)
+    }
   }
 
-  abstract process (items: any[]): Buffer
+  async abstract process (items: any[]): Promise<Buffer>
 }
-
-export default BinaryWriter

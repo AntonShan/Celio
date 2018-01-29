@@ -1,4 +1,4 @@
-import Serializer from './Serializer'
+import { Serializer } from './Serializer'
 
 export {
   Serializer

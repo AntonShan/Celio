@@ -1,9 +1,8 @@
-import { decodeSpectralClass } from '../utils'
-import AbstractReader from './AbstractReader'
-import * as fs from 'fs'
-import META from '../utils/DatMeta'
+import { decodeSpectralClass } from '../SpectralTools'
+import { AbstractReader } from './AbstractReader'
+import { META } from '../utils'
 
-class DATReader implements AbstractReader {
+export class DATReader implements AbstractReader {
   private static parse (data: Buffer): any[] {
     let starsInFile = 0
 
@@ -59,5 +58,3 @@ class DATReader implements AbstractReader {
     })
   }
 }
-
-export default DATReader

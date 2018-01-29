@@ -1,23 +1,19 @@
 import { Grammar, Parser } from 'nearley'
-import AbstractReader from './AbstractReader'
+import { AbstractReader } from './AbstractReader'
 
-class NearleyBasedReader implements AbstractReader {
-  parser: any
+export class NearleyBasedReader implements AbstractReader {
+  parser: Parser
 
   constructor (grammar) {
     this.parser = new Parser(Grammar.fromCompiled(grammar))
   }
 
-  read (data: string): Promise<any[]> {
-    return new Promise((resolve, reject) => {
-      try {
-        const result = this.parser.feed(data).results[0]
-        resolve(result)
-      } catch (error) {
-        reject (error)
-      }
-    })
+  async read (data: string): Promise<any[]> {
+    try {
+      const result = this.parser.feed(data).results[0]
+      return Promise.resolve(result)
+    } catch (error) {
+      return Promise.reject(error)
+    }
   }
 }
-
-export default NearleyBasedReader

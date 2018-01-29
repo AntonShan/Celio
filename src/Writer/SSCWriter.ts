@@ -1,14 +1,23 @@
-import TextWriter from './TextWriter'
+import { TextWriter } from './TextWriter'
 import { Serializer } from '../Serializer'
 
-class SSCWriter extends TextWriter {
-  writeHeader (value: any): string {
-    const mode = (value.mode !== null && value.modeSet) ? value.mode : ''
-    const type = (value.type !== null && value.typeSet) ? value.type : ''
-    const names = value.names !== null ? Serializer.writeString(value.names.join(':')) : ''
-    const parentName = value.pathToParent !== null ? Serializer.writeString(value.pathToParent.join('/')) : ''
+export class SSCWriter extends TextWriter {
+  async writeHeader (value: any): Promise<string> {
+    const [mode, type, names, parentName] = await Promise.all([
+      () => Promise.resolve((value.mode !== null && value.modeSet) ? value.mode : ''),
+      () => Promise.resolve((value.mode !== null && value.modeSet) ? value.mode : ''),
+      async () => {
+        return value.names !== null
+          ? await Serializer.writeString(value.names.join(':'))
+          : ''
+      },
+      async () => {
+        return value.pathToParent !== null
+          ? await Serializer.writeString(value.pathToParent.join('/'))
+          : ''
+      }
+    ])
+
     return [mode, type, names, parentName].join(' ').trim()
   }
 }
-
-export default SSCWriter

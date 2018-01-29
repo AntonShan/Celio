@@ -1,91 +1,6 @@
-enum Unknown {
-  Subclass_Unknown = 10
-}
+import { ParseState, SpectralClass, LuminosityClass, Unknown, StarType } from './SpectralData'
 
-enum ParseState {
-  BeginState,
-  EndState,
-  NormalStarState,
-  WolfRayetTypeState,
-  NormalStarClassState,
-  NormalStarSubclassState,
-  NormalStarSubclassDecimalState,
-  NormalStarSubclassFinalState,
-  LumClassBeginState,
-  LumClassIState,
-  LumClassIIState,
-  LumClassVState,
-  LumClassIdashState,
-  LumClassIaState,
-  WDTypeState,
-  WDExtendedTypeState,
-  WDSubclassState,
-  SubdwarfPrefixState,
-}
-
-enum StarType {
-  NormalStar,
-  WhiteDwarf,
-  NeutronStar,
-  BlackHole,
-}
-
-enum SpectralClass {
-  Spectral_O,
-  Spectral_B,
-  Spectral_A,
-  Spectral_F,
-  Spectral_G,
-  Spectral_K,
-  Spectral_M,
-  Spectral_R,
-  Spectral_S,
-  Spectral_N,
-  Spectral_WC,
-  Spectral_WN,
-  Spectral_Unknown,
-  Spectral_L,
-  Spectral_T,
-  Spectral_C,
-  Spectral_DA,
-  Spectral_DB,
-  Spectral_DC,
-  Spectral_DO,
-  Spectral_DQ,
-  Spectral_DZ,
-  Spectral_D,
-  Spectral_DX,
-  Spectral_Count,
-}
-
-enum LuminosityClass {
-  Lum_Ia0,
-  Lum_Ia,
-  Lum_Ib,
-  Lum_II,
-  Lum_III,
-  Lum_IV,
-  Lum_V,
-  Lum_VI,
-  Lum_Unknown,
-  Lum_Count
-}
-
-const LumStrClasses = [
-  'I-a0',
-  'I-a',
-  'I-b',
-  'II',
-  'III',
-  'IV',
-  'V',
-  'VI'
-]
-
-const SubClassUnknown = 10
-const WDClassCount = 8
-
-function encodeSpectralClass (st: string): number {
+export function encodeSpectralClass (st: string): number {
   let i = 0
   let state = ParseState.BeginState
   let starType = StarType.NormalStar
@@ -245,7 +160,7 @@ function encodeSpectralClass (st: string): number {
 
       case ParseState.NormalStarSubclassState:
         if (c !== null && c.match(/[0-9]/)) {
-          subClass = parseInt(c)
+          subClass = parseInt(c, 10)
           state = ParseState.NormalStarSubclassDecimalState
           ++i
         } else {
@@ -449,7 +364,7 @@ function encodeSpectralClass (st: string): number {
 
       case ParseState.WDSubclassState:
         if (c !== null && c.match(/[0-9]/)) {
-          subClass = parseInt(c)
+          subClass = parseInt(c, 10)
           i++
         } else {
           subClass = Unknown.Subclass_Unknown
@@ -472,5 +387,3 @@ function encodeSpectralClass (st: string): number {
 
   return buffer
 }
-
-export default encodeSpectralClass

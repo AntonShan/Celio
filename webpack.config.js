@@ -1,9 +1,11 @@
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const path = require('path')
+const merge = require('webpack-merge')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
-module.exports = {
+const baseConfig = {
   entry: './src/Celio/Celio.ts',
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -20,16 +22,37 @@ module.exports = {
       }
     ]
   },
-  // plugins: [
-  //   new UglifyJSPlugin()
-  // ],
-  target: 'node',
+  plugins: [
+    new CleanWebpackPlugin(['dist']),
+    new UglifyJSPlugin({
+      sourceMap: true
+    })
+  ],
   resolve: {
     extensions: [ '.ts' ]
   },
+}
+
+const clientConfig = merge(baseConfig, {
+  target: 'web',
   output: {
-    filename: 'bundle.js',
+    filename: 'celio.js',
+    libraryTarget: 'window',
+    library: 'Celio',
+    path: path.resolve(__dirname, 'dist')
+  }
+})
+
+const serverConfig = merge(baseConfig, {
+  target: 'node',
+  output: {
+    filename: 'celio.esm.js',
     libraryTarget: 'commonjs',
     path: path.resolve(__dirname, 'dist')
   }
-}
+})
+
+module.exports = [
+  serverConfig,
+  clientConfig
+]

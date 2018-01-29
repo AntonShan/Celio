@@ -1,13 +1,8 @@
 const {resolve, join, extname} = require('path')
 const fs = require('fs')
-const {Celio} = require('../dist/bundle')
-const Datastore = require('nedb')
+const {Celio} = require('../dist/celio.esm')
 
-const database = new Datastore({
-  autoload: true
-})
-
-const celestiaPath = `D:\\Program Files (x86)\\Celestia`
+const celestiaPath = `C:\\Program Files (x86)\\Celestia`
 const configPath = resolve(join(celestiaPath, 'celestia.cfg'))
 
 function readFile (filepath, options = {}) {
@@ -30,14 +25,14 @@ async function readConfig () {
 }
 
 async function readCatalogs (list) {
-  return await Promise.all(list.map(async file => {
-    const fileContents = await readFile(join(celestiaPath, file), {
+  return await Promise.all(list.map(file => {
+    return readFile(join(celestiaPath, file), {
       encoding: 'utf-8'
-    })
-
-    return Celio.read(fileContents, extname(file).split('.')[1]).catch((error) => {
+    }).then(function (fileContents) {
+      return Celio.read(fileContents, extname(file).split('.')[1])
+    }).catch(function (error) {
       console.error(`Unable to read file: ${file}\nMessage: ${error.message}`)
-      return void 0
+      throw new Error(error)
     })
   }))
 }
@@ -52,8 +47,7 @@ async function main () {
     ...(config.DeepSkyCatalogs || [])
   ]
   const catalogObjects = await readCatalogs(catalogs)
-  await writeFile('catalog.json', JSON.stringify(catalogObjects))
-  console.log('write success')
+  console.log(`Successfully read ${catalogObjects.length} items`)
 }
 
 main().catch(console.error)

@@ -1,16 +1,12 @@
-const reduce = function <T> (input: any): any[] {
-  return Object.keys(input).reduce((acc, key) => {
-    return [].concat(acc, input[key])
-  }, [])
-}
+import { reduce } from '../utils'
 
-enum FormatType {
+export enum FormatType {
   TEXT,
   BINARY,
   INCORRECT
 }
 
-class FormatsChecker {
+export class FormatsChecker {
   private static _viableFormats = {
     text: ['stc', 'ssc', 'dsc', 'cfg'],
     binary: ['dat']
@@ -35,9 +31,4 @@ class FormatsChecker {
       return FormatType.BINARY
     }
   }
-}
-
-export {
-  FormatsChecker,
-  FormatType
 }
