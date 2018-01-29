@@ -1,6 +1,6 @@
 {
   "name": "celio",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Celestia catalogue files parser",
   "main": "dist/celio.common.js",
   "keywords": [
