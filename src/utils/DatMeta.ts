@@ -1,5 +1,0 @@
-export const META = {
-  FILE_HEADER: 'CELSTARS',
-  VERSION: 0x0100,
-  HEADER_OFFSET: 14
-}

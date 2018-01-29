@@ -1,18 +1,18 @@
 import { BinaryWriter } from './BinaryWriter'
-import { META } from '../utils'
+import { FILE_HEADER, VERSION, HEADER_OFFSET } from '../Meta'
 import { encodeSpectralClass } from '../SpectralTools'
 import { Buffer } from 'buffer/'
 
 export class DATWriter extends BinaryWriter {
   async process (items: any[]): Promise<Buffer> {
-    const header = META.FILE_HEADER
-    const version = META.VERSION   // 2 bytes
+    const header = FILE_HEADER
+    const version = VERSION   // 2 bytes
     const itemsCount = items.length     // 4 bytes
     const headerOffset = header.length + 6
     const buffer = Buffer.alloc(headerOffset + itemsCount * 20)
     buffer.write(header, 0)
-    buffer.writeUInt16LE(version, META.FILE_HEADER.length)
-    buffer.writeUInt32LE(itemsCount, META.FILE_HEADER.length + 2)
+    buffer.writeUInt16LE(version, FILE_HEADER.length)
+    buffer.writeUInt32LE(itemsCount, FILE_HEADER.length + 2)
 
     let offset = headerOffset
 
