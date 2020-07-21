@@ -13,6 +13,8 @@
     },
     "types": [
       "@types/node",
+      "@types/jest",
+      "@types/mocha",
       "@types/nearley"
     ],
     "typeRoots": [
@@ -29,13 +31,14 @@
     "noEmit": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "moduleResolution": "Node"
   },
   "exclude": [
     "node_modules"
   ],
   "include": [
-    "./src/**/*.ts"
+    "./src/**/*.ts",
+    "./src/**/*.spec.ts"
   ]
 }

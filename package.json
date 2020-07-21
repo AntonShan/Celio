@@ -8,6 +8,8 @@
     "astronomy"
   ],
   "devDependencies": {
+    "@types/jest": "^26.0.5",
+    "@types/mocha": "^8.0.0",
     "@types/nearley": "^2.11.0",
     "@types/node": "^14.0.24",
     "@typescript-eslint/eslint-plugin": "^3.7.0",
@@ -15,6 +17,7 @@
     "clean-webpack-plugin": "^0.1.18",
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
+    "jest": "^26.1.0",
     "nearley-webpack-loader": "^0.0.1",
     "prettier": "^2.0.5",
     "ts-loader": "^2.3.7",
@@ -33,7 +36,9 @@
   },
   "scripts": {
     "build": "webpack",
-    "lint": "yarn eslint --fix */**/*.ts"
+    "lint": "yarn eslint --fix */**/*.ts",
+    "test": "jest",
+    "test:dev": "jest --watch"
   },
   "dependencies": {
     "buffer": "^5.0.8",
