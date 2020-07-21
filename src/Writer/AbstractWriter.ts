@@ -1,3 +1,3 @@
 export interface AbstractWriter {
-  write (type: string, items: any[]): Promise<Buffer | string>
+  write (type: string, items: never[]): Promise<Buffer | string>
 }

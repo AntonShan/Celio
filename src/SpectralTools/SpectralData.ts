@@ -116,12 +116,12 @@ export const LumStrClasses = [
   'III',
   'IV',
   'V',
-  'VI'
-]
+  'VI',
+];
 
 export enum Unknown {
   Subclass_Unknown = 10
 }
 
-export const SubClassUnknown = 10
-export const WDClassCount = 8
+export const SubClassUnknown = 10;
+export const WDClassCount = 8;

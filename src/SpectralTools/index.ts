@@ -1,7 +1,7 @@
-import { decodeSpectralClass } from './decodeSpectralClass'
-import { encodeSpectralClass } from './encodeSpectralClass'
+import { decodeSpectralClass } from './decodeSpectralClass';
+import { encodeSpectralClass } from './encodeSpectralClass';
 
 export {
   decodeSpectralClass,
-  encodeSpectralClass
-}
+  encodeSpectralClass,
+};

@@ -1,34 +1,35 @@
-import { reduce } from '../utils'
-
-export enum FormatType {
-  TEXT,
-  BINARY,
-  INCORRECT
-}
+import { BinaryExtension, FormatType, TextExtension } from '../types';
 
 export class FormatsChecker {
-  private static _viableFormats = {
-    text: ['stc', 'ssc', 'dsc', 'cfg'],
-    binary: ['dat']
+  private static readonly supportedFormats = {
+    text: new Set([
+      TextExtension.STC,
+      TextExtension.SSC,
+      TextExtension.DSC,
+      TextExtension.CFG,
+      ]),
+    binary: new Set([
+      BinaryExtension.DAT,
+    ]),
+  };
+
+  static isCorrectExtension(extension: string): boolean {
+    // @ts-ignore
+    return FormatsChecker.supportedFormats.text.has(extension)
+    // @ts-ignore
+      || FormatsChecker.supportedFormats.binary.has(extension);
   }
 
-  static get viableFormats (): string[] {
-    return reduce(FormatsChecker._viableFormats)
-  }
-
-  static isCorrectExtension (extension: string): boolean {
-    return FormatsChecker.viableFormats.indexOf(extension.toLowerCase()) !== -1
-  }
-
-  static formatType (extension: string): FormatType {
+  static formatType(extension: string): FormatType {
     if (!FormatsChecker.isCorrectExtension(extension)) {
-      return FormatType.INCORRECT
+      return FormatType.INCORRECT;
     }
 
-    if (FormatsChecker._viableFormats.text.indexOf(extension) !== -1) {
-      return FormatType.TEXT
+    // @ts-ignore
+    if (FormatsChecker.supportedFormats.text.has(extension)) {
+      return FormatType.TEXT;
     } else {
-      return FormatType.BINARY
+      return FormatType.BINARY;
     }
   }
 }

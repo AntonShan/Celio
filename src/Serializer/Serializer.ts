@@ -1,54 +1,55 @@
-import { isArray, isObject, isString, isNumber } from '../utils'
+import { isArray, isObject, isString, isNumber } from '../utils';
+import { UnknownProperties } from 'src/types';
 
 export class Serializer {
-  static async stringify (value: any, indent = 0): Promise<string> {
+  static async stringify(value: UnknownProperties, indent = 0): Promise<string> {
     if (isObject(value)) {
       if (isArray(value)) {
-        return Serializer.writeArray(value, indent)
+        return Serializer.writeArray(value, indent);
       } else {
-        return Serializer.writeObject(value, indent)
+        return Serializer.writeObject(value, indent);
       }
     } else {
       if (isNumber(value)) {
-        return Serializer.writeNumber(value)
+        return Serializer.writeNumber(value);
       } else if (isString(value)) {
-        return Serializer.writeString(value)
+        return Serializer.writeString(value);
       } else {
-        return Promise.resolve(String(value))
+        return Promise.resolve(String(value));
       }
     }
   }
 
-  static async writeArray (array: any[], indent: number): Promise<string> {
+  static async writeArray(array: any[], indent: number): Promise<string> {
     const values = await Promise.all(array.map((item) => {
-      return Serializer.stringify(item, indent + 2)
-    }))
+      return Serializer.stringify(item, indent + 2);
+    }));
 
-    return '[ ' + values.join(' ') + ' ]'
+    return '[ ' + values.join(' ') + ' ]';
   }
 
-  static async writeObject (value: Object, indent: number): Promise<string> {
+  static async writeObject(value: any, indent: number): Promise<string> {
     if (Object.keys(value).length === 0) {
-      return '{ }'
+      return '{ }';
     }
 
     const entries = await Promise.all(Object.keys(value)
-      .map(async function (key) {
-        return Serializer.writeField(key, await Serializer.stringify(value[key], indent + 2), indent + 2)
-      }))
+      .map(async function(key) {
+        return Serializer.writeField(key, await Serializer.stringify(value[key], indent + 2), indent + 2);
+      }));
 
-    return '{\n' + entries.join('\n') + '\n' + ' '.repeat(indent) + '}'
+    return '{\n' + entries.join('\n') + '\n' + ' '.repeat(indent) + '}';
   }
 
-  static async writeString (value: string): Promise<string> {
-    return Promise.resolve('"' + value + '"')
+  static async writeString(value: string): Promise<string> {
+    return Promise.resolve('"' + value + '"');
   }
 
-  static async writeNumber (value: number, precision = 6): Promise<string> {
-    return Promise.resolve(String(Math.floor(value * 10 ** precision) / 10 ** precision))
+  static async writeNumber(value: number, precision = 6): Promise<string> {
+    return Promise.resolve(String(Math.floor(value * 10 ** precision) / 10 ** precision));
   }
 
-  static async writeField (key: string, value: string, indent: number): Promise<string> {
-    return Promise.resolve(' '.repeat(indent) + key + ' ' + value)
+  static async writeField(key: string, value: string, indent: number): Promise<string> {
+    return Promise.resolve(' '.repeat(indent) + key + ' ' + value);
   }
 }

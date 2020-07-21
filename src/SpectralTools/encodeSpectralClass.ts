@@ -1,344 +1,344 @@
-import { ParseState, SpectralClass, LuminosityClass, Unknown, StarType } from './SpectralData'
+import { ParseState, SpectralClass, LuminosityClass, Unknown, StarType } from './SpectralData';
 
-export function encodeSpectralClass (st: string): number {
-  let i = 0
-  let state = ParseState.BeginState
-  let starType = StarType.NormalStar
-  let specClass = SpectralClass.Spectral_Unknown
-  let lumClass = LuminosityClass.Lum_Unknown
-  let subClass = Unknown.Subclass_Unknown
+export function encodeSpectralClass(st: string): number {
+  let i = 0;
+  let state = ParseState.BeginState;
+  let starType = StarType.NormalStar;
+  let specClass = SpectralClass.Spectral_Unknown;
+  let lumClass = LuminosityClass.Lum_Unknown;
+  let subClass = Unknown.Subclass_Unknown;
 
   while (state !== ParseState.EndState) {
-    let c = i < st.length
+    const c = i < st.length
       ? st.charAt(i)
-      : null
+      : null;
 
     switch (state) {
       case ParseState.BeginState:
         switch (c) {
           case 'Q':
-            starType = StarType.NeutronStar
-            state = ParseState.EndState
-            break
+            starType = StarType.NeutronStar;
+            state = ParseState.EndState;
+            break;
 
           case 'X':
-            starType = StarType.BlackHole
-            state = ParseState.EndState
-            break
+            starType = StarType.BlackHole;
+            state = ParseState.EndState;
+            break;
 
           case 'D':
-            starType = StarType.WhiteDwarf
-            specClass = SpectralClass.Spectral_D
-            state = ParseState.WDTypeState
-            ++i
-            break
+            starType = StarType.WhiteDwarf;
+            specClass = SpectralClass.Spectral_D;
+            state = ParseState.WDTypeState;
+            ++i;
+            break;
 
           case 's':
-            state = ParseState.SubdwarfPrefixState
-            ++i
-            break
+            state = ParseState.SubdwarfPrefixState;
+            ++i;
+            break;
 
           case '?':
-            state = ParseState.EndState
-            break
+            state = ParseState.EndState;
+            break;
 
           default:
-            state = ParseState.NormalStarClassState
-            break
+            state = ParseState.NormalStarClassState;
+            break;
         }
-        break
+        break;
 
       case ParseState.WolfRayetTypeState:
         switch (c) {
           case 'C':
-            specClass = SpectralClass.Spectral_WC
-            state = ParseState.NormalStarSubclassState
-            ++i
-            break
+            specClass = SpectralClass.Spectral_WC;
+            state = ParseState.NormalStarSubclassState;
+            ++i;
+            break;
 
           case 'N':
-            specClass = SpectralClass.Spectral_WN
-            state = ParseState.NormalStarSubclassState
-            ++i
-            break
+            specClass = SpectralClass.Spectral_WN;
+            state = ParseState.NormalStarSubclassState;
+            ++i;
+            break;
 
           default:
-            specClass = SpectralClass.Spectral_WC
-            state = ParseState.NormalStarSubclassState
-            break
+            specClass = SpectralClass.Spectral_WC;
+            state = ParseState.NormalStarSubclassState;
+            break;
         }
-        break
+        break;
 
       case ParseState.SubdwarfPrefixState:
         if (c === 'd') {
-          lumClass = LuminosityClass.Lum_VI
-          state = ParseState.NormalStarClassState
-          ++i
-          break
+          lumClass = LuminosityClass.Lum_VI;
+          state = ParseState.NormalStarClassState;
+          ++i;
+          break;
         } else {
-          state = ParseState.EndState
+          state = ParseState.EndState;
         }
-        break
+        break;
 
       case ParseState.NormalStarClassState:
         switch (c) {
           case 'W':
-            state = ParseState.WolfRayetTypeState
-            break
+            state = ParseState.WolfRayetTypeState;
+            break;
 
           case 'O':
-            specClass = SpectralClass.Spectral_O
-            state = ParseState.NormalStarSubclassState
-            break
+            specClass = SpectralClass.Spectral_O;
+            state = ParseState.NormalStarSubclassState;
+            break;
 
           case 'B':
-            specClass = SpectralClass.Spectral_B
-            state = ParseState.NormalStarSubclassState
-            break
+            specClass = SpectralClass.Spectral_B;
+            state = ParseState.NormalStarSubclassState;
+            break;
 
           case 'A':
-            specClass = SpectralClass.Spectral_A
-            state = ParseState.NormalStarSubclassState
-            break
+            specClass = SpectralClass.Spectral_A;
+            state = ParseState.NormalStarSubclassState;
+            break;
 
           case 'F':
-            specClass = SpectralClass.Spectral_F
-            state = ParseState.NormalStarSubclassState
-            break
+            specClass = SpectralClass.Spectral_F;
+            state = ParseState.NormalStarSubclassState;
+            break;
 
           case 'G':
-            specClass = SpectralClass.Spectral_G
-            state = ParseState.NormalStarSubclassState
-            break
+            specClass = SpectralClass.Spectral_G;
+            state = ParseState.NormalStarSubclassState;
+            break;
 
           case 'K':
-            specClass = SpectralClass.Spectral_K
-            state = ParseState.NormalStarSubclassState
-            break
+            specClass = SpectralClass.Spectral_K;
+            state = ParseState.NormalStarSubclassState;
+            break;
 
           case 'M':
-            specClass = SpectralClass.Spectral_M
-            state = ParseState.NormalStarSubclassState
-            break
+            specClass = SpectralClass.Spectral_M;
+            state = ParseState.NormalStarSubclassState;
+            break;
 
           case 'R':
-            specClass = SpectralClass.Spectral_R
-            state = ParseState.NormalStarSubclassState
-            break
+            specClass = SpectralClass.Spectral_R;
+            state = ParseState.NormalStarSubclassState;
+            break;
 
           case 'S':
-            specClass = SpectralClass.Spectral_S
-            state = ParseState.NormalStarSubclassState
-            break
+            specClass = SpectralClass.Spectral_S;
+            state = ParseState.NormalStarSubclassState;
+            break;
 
           case 'N':
-            specClass = SpectralClass.Spectral_N
-            state = ParseState.NormalStarSubclassState
-            break
+            specClass = SpectralClass.Spectral_N;
+            state = ParseState.NormalStarSubclassState;
+            break;
 
           case 'L':
-            specClass = SpectralClass.Spectral_L
-            state = ParseState.NormalStarSubclassState
-            break
+            specClass = SpectralClass.Spectral_L;
+            state = ParseState.NormalStarSubclassState;
+            break;
 
           case 'T':
-            specClass = SpectralClass.Spectral_T
-            state = ParseState.NormalStarSubclassState
-            break
+            specClass = SpectralClass.Spectral_T;
+            state = ParseState.NormalStarSubclassState;
+            break;
 
           case 'C':
-            specClass = SpectralClass.Spectral_C
-            state = ParseState.NormalStarSubclassState
-            break
+            specClass = SpectralClass.Spectral_C;
+            state = ParseState.NormalStarSubclassState;
+            break;
 
           default:
-            state = ParseState.EndState
-            break
+            state = ParseState.EndState;
+            break;
         }
-        ++i
-        break
+        ++i;
+        break;
 
       case ParseState.NormalStarSubclassState:
         if (c !== null && c.match(/[0-9]/)) {
-          subClass = parseInt(c, 10)
-          state = ParseState.NormalStarSubclassDecimalState
-          ++i
+          subClass = parseInt(c, 10);
+          state = ParseState.NormalStarSubclassDecimalState;
+          ++i;
         } else {
-          state = ParseState.LumClassBeginState
+          state = ParseState.LumClassBeginState;
         }
-        break
+        break;
 
       case ParseState.NormalStarSubclassDecimalState:
         if (c === '.') {
-          state = ParseState.NormalStarSubclassFinalState
-          ++i
+          state = ParseState.NormalStarSubclassFinalState;
+          ++i;
         } else {
-          state = ParseState.LumClassBeginState
+          state = ParseState.LumClassBeginState;
         }
-        break
+        break;
 
       case ParseState.NormalStarSubclassFinalState:
         if (c.match(/[0-9]/)) {
-          state = ParseState.LumClassBeginState
+          state = ParseState.LumClassBeginState;
         } else {
-          state = ParseState.EndState
+          state = ParseState.EndState;
         }
-        ++i
-        break
+        ++i;
+        break;
 
       case ParseState.LumClassBeginState:
         switch (c) {
           case 'I':
-            state = ParseState.LumClassIState
-            break
+            state = ParseState.LumClassIState;
+            break;
 
           case 'V':
-            state = ParseState.LumClassVState
-            break
+            state = ParseState.LumClassVState;
+            break;
 
           default:
-            state = ParseState.EndState
-            break
+            state = ParseState.EndState;
+            break;
         }
-        ++i
-        break
+        ++i;
+        break;
 
       case ParseState.LumClassIState:
         switch (c) {
           case 'I':
-            state = ParseState.LumClassIIState
-            break
+            state = ParseState.LumClassIIState;
+            break;
 
           case 'V':
-            lumClass = LuminosityClass.Lum_IV
-            state = ParseState.EndState
-            break
+            lumClass = LuminosityClass.Lum_IV;
+            state = ParseState.EndState;
+            break;
 
           case 'a':
-            state = ParseState.LumClassIaState
-            break
+            state = ParseState.LumClassIaState;
+            break;
 
           case 'b':
-            lumClass = LuminosityClass.Lum_Ib
-            state = ParseState.EndState
-            break
+            lumClass = LuminosityClass.Lum_Ib;
+            state = ParseState.EndState;
+            break;
 
           case '-':
-            state = ParseState.LumClassIdashState
-            break
+            state = ParseState.LumClassIdashState;
+            break;
 
           default:
-            lumClass = LuminosityClass.Lum_Ib
-            state = ParseState.EndState
-            break
+            lumClass = LuminosityClass.Lum_Ib;
+            state = ParseState.EndState;
+            break;
         }
-        i++
-        break
+        i++;
+        break;
 
       case ParseState.LumClassIIState:
         switch (c) {
           case 'I':
-            lumClass = LuminosityClass.Lum_III
-            state = ParseState.EndState
-            break
+            lumClass = LuminosityClass.Lum_III;
+            state = ParseState.EndState;
+            break;
 
           default:
-            lumClass = LuminosityClass.Lum_II
-            state = ParseState.EndState
-            break
+            lumClass = LuminosityClass.Lum_II;
+            state = ParseState.EndState;
+            break;
         }
-        break
+        break;
 
       case ParseState.LumClassIdashState:
         switch (c) {
           case 'a':
-            state = ParseState.LumClassIaState
-            ++i
-            break
+            state = ParseState.LumClassIaState;
+            ++i;
+            break;
 
           case 'b':
-            lumClass = LuminosityClass.Lum_Ib
-            state = ParseState.EndState
-            break
+            lumClass = LuminosityClass.Lum_Ib;
+            state = ParseState.EndState;
+            break;
 
           default:
-            lumClass = LuminosityClass.Lum_Ib
-            state = ParseState.EndState
-            break
+            lumClass = LuminosityClass.Lum_Ib;
+            state = ParseState.EndState;
+            break;
         }
-        break
+        break;
 
       case ParseState.LumClassIaState:
         switch (c) {
           case '0':
-            lumClass = LuminosityClass.Lum_Ia0
-            state = ParseState.EndState
-            break
+            lumClass = LuminosityClass.Lum_Ia0;
+            state = ParseState.EndState;
+            break;
 
           default:
-            lumClass = LuminosityClass.Lum_Ia
-            state = ParseState.EndState
-            break
+            lumClass = LuminosityClass.Lum_Ia;
+            state = ParseState.EndState;
+            break;
         }
-        break
+        break;
 
       case ParseState.LumClassVState:
         switch (c) {
           case 'I':
-            lumClass = LuminosityClass.Lum_VI
-            state = ParseState.EndState
-            break
+            lumClass = LuminosityClass.Lum_VI;
+            state = ParseState.EndState;
+            break;
 
           default:
-            lumClass = LuminosityClass.Lum_V
-            state = ParseState.EndState
-            break
+            lumClass = LuminosityClass.Lum_V;
+            state = ParseState.EndState;
+            break;
         }
-        break
+        break;
 
       case ParseState.WDTypeState:
         switch (c) {
           case 'A':
-            specClass = SpectralClass.Spectral_DA
-            i++
-            break
+            specClass = SpectralClass.Spectral_DA;
+            i++;
+            break;
 
           case 'B':
-            specClass = SpectralClass.Spectral_DB
-            i++
-            break
+            specClass = SpectralClass.Spectral_DB;
+            i++;
+            break;
 
           case 'C':
-            specClass = SpectralClass.Spectral_DC
-            i++
-            break
+            specClass = SpectralClass.Spectral_DC;
+            i++;
+            break;
 
           case 'O':
-            specClass = SpectralClass.Spectral_DO
-            i++
-            break
+            specClass = SpectralClass.Spectral_DO;
+            i++;
+            break;
 
           case 'Q':
-            specClass = SpectralClass.Spectral_DQ
-            i++
-            break
+            specClass = SpectralClass.Spectral_DQ;
+            i++;
+            break;
 
           case 'X':
-            specClass = SpectralClass.Spectral_DX
-            i++
-            break
+            specClass = SpectralClass.Spectral_DX;
+            i++;
+            break;
 
           case 'Z':
-            specClass = SpectralClass.Spectral_DZ
-            i++
-            break
+            specClass = SpectralClass.Spectral_DZ;
+            i++;
+            break;
 
           default:
-            specClass = SpectralClass.Spectral_D
-            break
+            specClass = SpectralClass.Spectral_D;
+            break;
         }
-        state = ParseState.WDExtendedTypeState
-        break
+        state = ParseState.WDExtendedTypeState;
+        break;
 
       case ParseState.WDExtendedTypeState:
         switch (c) {
@@ -353,37 +353,37 @@ export function encodeSpectralClass (st: string): number {
           case 'P':
           case 'H':
           case 'E':
-            i++
-            break
+            i++;
+            break;
 
           default:
-            state = ParseState.WDSubclassState
-            break
+            state = ParseState.WDSubclassState;
+            break;
         }
-        break
+        break;
 
       case ParseState.WDSubclassState:
         if (c !== null && c.match(/[0-9]/)) {
-          subClass = parseInt(c, 10)
-          i++
+          subClass = parseInt(c, 10);
+          i++;
         } else {
-          subClass = Unknown.Subclass_Unknown
+          subClass = Unknown.Subclass_Unknown;
         }
-        state = ParseState.EndState
-        break
+        state = ParseState.EndState;
+        break;
 
       default:
-        state = ParseState.EndState
-        break
+        state = ParseState.EndState;
+        break;
     }
   }
 
-  let buffer = 0
+  let buffer = 0;
 
-  buffer += (starType & 0xf) << 12
-  buffer += (specClass & 0xf) << 8
-  buffer += (subClass & 0xf) << 4
-  buffer += (lumClass & 0xf)
+  buffer += (starType & 0xf) << 12;
+  buffer += (specClass & 0xf) << 8;
+  buffer += (subClass & 0xf) << 4;
+  buffer += (lumClass & 0xf);
 
-  return buffer
+  return buffer;
 }

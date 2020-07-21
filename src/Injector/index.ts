@@ -1,5 +1,5 @@
-import Injector from './Injector'
+import Injector from './Injector';
 
 export {
-  Injector
-}
+  Injector,
+};

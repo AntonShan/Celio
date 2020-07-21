@@ -1,15 +1,16 @@
-import { Injector } from '../Injector'
+import { Injector } from '../Injector';
+import { BinaryExtension, TextExtension } from 'src/types';
 
 export class Celio {
-  static read (buffer: Buffer, type: string): Promise<any[]> {
-    const Reader = Injector.makeReader(type)
+  static read(buffer: Buffer, type: TextExtension | BinaryExtension): Promise<never[]> {
+    const Reader = Injector.makeReader(type);
 
-    return Reader.read(buffer)
+    return Reader.read(buffer);
   }
 
-  static write (type: string, items: any[]): Promise<Buffer | string> {
-    const Writer = Injector.makeWriter(type)
+  static write(type: string, items: never[]): Promise<Buffer | string> {
+    const Writer = Injector.makeWriter(type);
 
-    return Writer.write(type, items)
+    return Writer.write(type, items);
   }
 }

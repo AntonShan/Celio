@@ -1,7 +1,7 @@
-import { ConfigWriter } from './ConfigWriter'
+import { ConfigWriter } from './ConfigWriter';
 
 export class CFGWriter extends ConfigWriter {
-  writeHeader (value: any): string {
-    return 'Configuration '
+  writeHeader(value: any): string {
+    return 'Configuration ';
   }
 }

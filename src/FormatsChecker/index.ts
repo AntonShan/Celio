@@ -1,6 +1,6 @@
-import { FormatsChecker, FormatType } from './FormatsChecker'
+import { FormatsChecker, FormatType } from './FormatsChecker';
 
 export {
   FormatsChecker,
-  FormatType
-}
+  FormatType,
+};

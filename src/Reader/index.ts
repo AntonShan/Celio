@@ -1,9 +1,3 @@
-import { NearleyBasedReader } from './NearleyBasedReader'
-import { DATReader } from './DATReader'
-import { AbstractReader } from './AbstractReader'
-
-export {
-  NearleyBasedReader,
-  DATReader,
-  AbstractReader
-}
+export { NearleyBasedReader } from './NearleyBasedReader';
+export { DATReader } from './DATReader';
+export { AbstractReader } from './AbstractReader';

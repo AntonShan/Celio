@@ -1,3 +1,5 @@
-export interface AbstractReader {
-  read (fileName: Buffer | string): Promise<any[]>
+import { ObjectConfiguration } from 'src/types';
+
+export abstract class AbstractReader {
+  abstract read (fileName: Buffer | string): Promise<ObjectConfiguration[]>
 }

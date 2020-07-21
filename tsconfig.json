@@ -1,20 +1,41 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "target": "es2016",
+    "target": "ESNext",
     "removeComments": true,
+    "noImplicitAny": true,
     "sourceMap": true,
-    "module": "commonjs",
+    "module": "ESNext",
+    "baseUrl": "./",
+    "paths": {
+      "src/*": [
+        "./src/*"
+      ]
+    },
+    "types": [
+      "@types/node",
+      "@types/nearley"
+    ],
     "typeRoots": [
       "./node_modules/@types",
       "./src/types"
     ],
-    "moduleResolution": "node"
+    "lib": [
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "moduleResolution": "Node"
   },
   "exclude": [
     "node_modules"
   ],
   "include": [
-    "./src/**/*"
+    "./src/**/*.ts"
   ]
 }

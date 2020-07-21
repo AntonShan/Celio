@@ -1,4 +1,4 @@
 declare module '*.ne' {
-  const _: any
-  export default _
+  const _: any;
+  export default _;
 }
