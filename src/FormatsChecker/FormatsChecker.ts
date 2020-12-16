@@ -7,17 +7,15 @@ export class FormatsChecker {
       TextExtension.SSC,
       TextExtension.DSC,
       TextExtension.CFG,
-      ]),
-    binary: new Set([
-      BinaryExtension.DAT,
     ]),
+    binary: new Set([BinaryExtension.DAT]),
   };
 
   static isCorrectExtension(extension: string): boolean {
-    // @ts-ignore
-    return FormatsChecker.supportedFormats.text.has(extension)
-    // @ts-ignore
-      || FormatsChecker.supportedFormats.binary.has(extension);
+    return (
+      FormatsChecker.supportedFormats.text.has(extension as TextExtension) ||
+      FormatsChecker.supportedFormats.binary.has(extension as BinaryExtension)
+    );
   }
 
   static formatType(extension: string): FormatType {
@@ -25,8 +23,7 @@ export class FormatsChecker {
       return FormatType.INCORRECT;
     }
 
-    // @ts-ignore
-    if (FormatsChecker.supportedFormats.text.has(extension)) {
+    if (FormatsChecker.supportedFormats.text.has(extension as TextExtension)) {
       return FormatType.TEXT;
     } else {
       return FormatType.BINARY;

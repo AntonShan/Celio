@@ -7,12 +7,12 @@ export class SSCWriter extends TextWriter {
     const [mode, type, names, parentName] = await Promise.all([
       () => Promise.resolve(value.mode !== null ? value.mode : ''),
       () => Promise.resolve(value.mode !== null ? value.mode : ''),
-      async() => {
+      async () => {
         return value.names !== null
           ? await Serializer.writeString(value.names.join(':'))
           : '';
       },
-      async() => {
+      async () => {
         return value.pathToParent !== null
           ? await Serializer.writeString(value.pathToParent.join('/'))
           : '';

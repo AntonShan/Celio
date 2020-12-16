@@ -9,24 +9,31 @@ import {
   LumStrClasses,
 } from './SpectralData';
 
-export const unpackStellarClass = (st: number): any => {
+type StellarClass = {
+  starType: StarType;
+  specClass: SpectralClassStr;
+  subClass: number;
+  lumClass: number;
+};
+
+export const unpackStellarClass = (st: number): StellarClass => {
   const starType = st >> 12;
   let specClass;
   let subClass;
   let lumClass;
 
   switch (starType) {
-    case StarType.NormalStar :
-      specClass = st >> 8 & 0xf;
-      subClass = st >> 4 & 0xf;
+    case StarType.NormalStar:
+      specClass = (st >> 8) & 0xf;
+      subClass = (st >> 4) & 0xf;
       lumClass = st & 0xf;
       break;
     case StarType.WhiteDwarf:
-      if ((st >> 8 & 0xf) >= WDClassCount) {
+      if (((st >> 8) & 0xf) >= WDClassCount) {
         return null;
       }
-      specClass = (st >> 8 & 0xf) + SpectralClass.Spectral_DA;
-      subClass = st >> 4 & 0xf;
+      specClass = ((st >> 8) & 0xf) + SpectralClass.Spectral_DA;
+      subClass = (st >> 4) & 0xf;
       lumClass = LuminosityClass.Lum_Unknown;
       break;
     case StarType.NeutronStar:

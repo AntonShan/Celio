@@ -52,7 +52,4 @@ const serverConfig = merge(baseConfig, {
   },
 });
 
-module.exports = [
-  serverConfig,
-  clientConfig,
-];
+module.exports = [serverConfig, clientConfig];

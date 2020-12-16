@@ -21,7 +21,9 @@ describe('DSC parser', () => {
   });
 
   it('Should parse galaxy with multiple names', () => {
-    expect(parser.feed(multipleNamesRawData).results[0][0]).toEqual(multipleNamesData);
+    expect(parser.feed(multipleNamesRawData).results[0][0]).toEqual(
+      multipleNamesData,
+    );
   });
 
   it('Should parse globular object data', () => {

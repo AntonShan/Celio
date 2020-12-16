@@ -3,7 +3,10 @@ import { Serializer } from '../Serializer';
 import { ConfigurationObject, ObjectMeta, SupportedExtension } from 'src/types';
 
 export abstract class TextWriter implements AbstractWriter {
-  async write(type: SupportedExtension, items: ConfigurationObject[]): Promise<string> {
+  async write(
+    type: SupportedExtension,
+    items: ConfigurationObject[],
+  ): Promise<string> {
     try {
       return this.transform(items);
     } catch (error) {
@@ -12,7 +15,9 @@ export abstract class TextWriter implements AbstractWriter {
   }
 
   async transform(items: ConfigurationObject[]): Promise<string> {
-    const transformedItems = await Promise.all(items.map(item => this.transformItem(item)));
+    const transformedItems = await Promise.all(
+      items.map((item) => this.transformItem(item)),
+    );
 
     return transformedItems.join('\n');
   }
@@ -26,5 +31,5 @@ export abstract class TextWriter implements AbstractWriter {
     return objectHeader + ' ' + objectProperties + '\n';
   }
 
-  async abstract writeHeader(value: ObjectMeta): Promise<string>
+  abstract async writeHeader(value: ObjectMeta): Promise<string>;
 }

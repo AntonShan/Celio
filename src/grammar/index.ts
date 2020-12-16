@@ -5,12 +5,18 @@ import SSCGrammar from './sscparser.ne';
 import STCGrammar from './stcparser.ne';
 import { TextExtension } from '../types';
 
-export function getGrammarForExtension(extension: TextExtension): CompiledRules {
+export function getGrammarForExtension(
+  extension: TextExtension,
+): CompiledRules {
   switch (extension) {
-    case TextExtension.CFG: return CFGGrammar;
-    case TextExtension.STC: return SSCGrammar;
-    case TextExtension.SSC: return SSCGrammar;
-    case TextExtension.DSC: return DSCGrammar;
+    case TextExtension.CFG:
+      return CFGGrammar;
+    case TextExtension.STC:
+      return SSCGrammar;
+    case TextExtension.SSC:
+      return SSCGrammar;
+    case TextExtension.DSC:
+      return DSCGrammar;
   }
 }
 

@@ -1,18 +1,18 @@
 export enum FormatType {
   TEXT,
   BINARY,
-  INCORRECT
+  INCORRECT,
 }
 
 export enum TextExtension {
   STC = 'stc',
   SSC = 'ssc',
   DSC = 'dsc',
-  CFG = 'cfg'
+  CFG = 'cfg',
 }
 
 export enum BinaryExtension {
-  DAT = 'dat'
+  DAT = 'dat',
 }
 
 export type SupportedExtension = TextExtension | BinaryExtension;
@@ -22,10 +22,10 @@ export type ObjectLikeValue = Record<string, Value>;
 export type ConfigurationValue = Value | ObjectLikeValue;
 
 export type EssentialStarProperties = {
-  Distance: number,
-  RA: number
-  Dec: number
-  AbsMag: number
+  Distance: number;
+  RA: number;
+  Dec: number;
+  AbsMag: number;
   SpectralType: string;
 };
 
@@ -80,11 +80,21 @@ export interface DeepSkyObjectMeta {
   names: string[] | null;
 }
 
-export type ObjectMeta = StarObjectMeta | SolarSystemObjectMeta | DeepSkyObjectMeta;
+export type ObjectMeta =
+  | StarObjectMeta
+  | SolarSystemObjectMeta
+  | DeepSkyObjectMeta;
 
-export type StarObject = ObjectConfiguration<StarObjectMeta, EssentialStarProperties>;
+export type StarObject = ObjectConfiguration<
+  StarObjectMeta,
+  EssentialStarProperties
+>;
 export type SolarSystemObject = ObjectConfiguration<SolarSystemObjectMeta>;
-export type DeepSkyObject = ObjectConfiguration<DeepSkyObjectMeta>
+export type DeepSkyObject = ObjectConfiguration<DeepSkyObjectMeta>;
 export type Configuration = ObjectConfiguration<null>;
 
-export type ConfigurationObject = StarObject | SolarSystemObject | DeepSkyObject | Configuration;
+export type ConfigurationObject =
+  | StarObject
+  | SolarSystemObject
+  | DeepSkyObject
+  | Configuration;

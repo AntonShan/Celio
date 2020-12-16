@@ -1,4 +1,10 @@
-import { ParseState, SpectralClass, LuminosityClass, Unknown, StarType } from './SpectralData';
+import {
+  ParseState,
+  SpectralClass,
+  LuminosityClass,
+  Unknown,
+  StarType,
+} from './SpectralData';
 
 export function encodeSpectralClass(st: string): number {
   let i = 0;
@@ -9,9 +15,7 @@ export function encodeSpectralClass(st: string): number {
   let subClass = Unknown.Subclass_Unknown;
 
   while (state !== ParseState.EndState) {
-    const c = i < st.length
-      ? st.charAt(i)
-      : null;
+    const c = i < st.length ? st.charAt(i) : null;
 
     switch (state) {
       case ParseState.BeginState:
@@ -383,7 +387,7 @@ export function encodeSpectralClass(st: string): number {
   buffer += (starType & 0xf) << 12;
   buffer += (specClass & 0xf) << 8;
   buffer += (subClass & 0xf) << 4;
-  buffer += (lumClass & 0xf);
+  buffer += lumClass & 0xf;
 
   return buffer;
 }

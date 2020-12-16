@@ -7,7 +7,7 @@ export class DSCWriter extends TextWriter {
     const [catalogNumber, type, name] = await Promise.all([
       () => Promise.resolve(value.number !== null ? String(value.number) : ''),
       () => Promise.resolve(value.type !== null ? value.type : ''),
-      async() => {
+      async () => {
         return value.names !== null
           ? await Serializer.writeString(value.names.join(':'))
           : '';

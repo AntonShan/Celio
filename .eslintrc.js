@@ -1,37 +1,23 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  rules: {
-    '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/interface-name-prefix': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    'semi': ['error', 'always'],
-    'quotes': ['error', 'single'],
-    'comma-dangle': ['error', 'always-multiline'],
-    'object-curly-spacing': ['error', 'always'],
-    'array-bracket-spacing': ['error', 'never'],
-    'space-before-function-paren': ['error', 'never'],
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-unused-vars': 'off',
+  parserOptions: {
+    project: 'tsconfig.json',
+    sourceType: 'module',
   },
-  plugins: ['@typescript-eslint/eslint-plugin'],
+  rules: {
+    'prettier/prettier': 'error',
+    'arrow-body-style': 'off',
+    'prefer-arrow-callback': 'off',
+  },
+  plugins: ['prettier', '@typescript-eslint/eslint-plugin'],
   extends: [
+    'plugin:prettier/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier/@typescript-eslint',
   ],
   env: {
     node: true,
     jest: true,
   },
-  overrides: [
-    {
-      files: ['*.js'],
-      rules: {
-        'typescript/no-var-requires': 'off'
-      }
-    }
-  ]
 };

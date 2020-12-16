@@ -21,9 +21,7 @@ export class Serializer {
   }
 
   static writeArray(array: ConfigurationValue[], indent: number): string {
-    const values = array.map((item) => (
-      Serializer.stringify(item, indent + 2)
-    ));
+    const values = array.map((item) => Serializer.stringify(item, indent + 2));
 
     return '[ ' + values.join(' ') + ' ]';
   }
@@ -33,10 +31,13 @@ export class Serializer {
       return '{ }';
     }
 
-    const entries = Object.keys(value)
-      .map(async function(key) {
-        return Serializer.writeField(key, await Serializer.stringify(value[key], indent + 2), indent + 2);
-      });
+    const entries = Object.keys(value).map(async function (key) {
+      return Serializer.writeField(
+        key,
+        await Serializer.stringify(value[key], indent + 2),
+        indent + 2,
+      );
+    });
 
     return '{\n' + entries.join('\n') + '\n' + ' '.repeat(indent) + '}';
   }

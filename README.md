@@ -1,25 +1,25 @@
 # CelIO
 
 CelIO is package which allows you to read/write [Celestia](https://github.com/CelestiaProject/Celestia) .stc, .ssc, .dsc and stars.dat catalog files.
-Currently this library can successfully read all files from data folder of vanilla Celestia 1.6.1. 
+Currently this library can successfully read all files from data folder of vanilla Celestia 1.6.1.
 
 ## Usage
 
 ```js
-const fs = require('fs')
-const Celio = require('celio')
+const fs = require('fs');
+const Celio = require('celio');
 
-const celestiaPath = `C:\\Program Files (x86)\\Celestia`
-const configPath = resolve(join(celestiaPath, 'celestia.cfg'))
+const celestiaPath = `C:\\Program Files (x86)\\Celestia`;
+const configPath = resolve(join(celestiaPath, 'celestia.cfg'));
 
-async function readConfig () {
+async function readConfig() {
   const fileData = await readFile(configPath, {
-    encoding: 'utf-8'
-  })
-  return Celio.read(fileData, 'cfg')
+    encoding: 'utf-8',
+  });
+  return Celio.read(fileData, 'cfg');
 }
 
-readConfig().catch(console.error)
+readConfig().catch(console.error);
 ```
 
 which outputs

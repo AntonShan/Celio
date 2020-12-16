@@ -1,5 +1,3 @@
 import { Serializer } from './Serializer';
 
-export {
-  Serializer,
-};
+export { Serializer };

@@ -74,35 +74,35 @@ describe('Common mixin', () => {
     });
 
     it('Should parse a float number in exponential form E+', () => {
-      expect(test('123E+123')).toEqual(123E+123);
+      expect(test('123E+123')).toEqual(123e123);
     });
 
     it('Should parse a float number in exponential form E-', () => {
-      expect(test('123E-123')).toEqual(123E-123);
+      expect(test('123E-123')).toEqual(123e-123);
     });
 
     it('Should parse a float number in exponential form E+ with fraction part', () => {
-      expect(test('123.123E+123')).toEqual(123.123E+123);
+      expect(test('123.123E+123')).toEqual(123.123e123);
     });
 
     it('Should parse a float number in exponential form E- with fraction part', () => {
-      expect(test('123.123E-123')).toEqual(123.123E-123);
+      expect(test('123.123E-123')).toEqual(123.123e-123);
     });
 
     it('Should parse a negative float number in exponential form E+', () => {
-      expect(test('-123E+123')).toEqual(-123E+123);
+      expect(test('-123E+123')).toEqual(-123e123);
     });
 
     it('Should parse a negative float number in exponential form E-', () => {
-      expect(test('-123E-123')).toEqual(-123E-123);
+      expect(test('-123E-123')).toEqual(-123e-123);
     });
 
     it('Should parse a float number in exponential form E+ with fraction part', () => {
-      expect(test('-123.123E+123')).toEqual(-123.123E+123);
+      expect(test('-123.123E+123')).toEqual(-123.123e123);
     });
 
     it('Should parse a float number in exponential form E- with fraction part', () => {
-      expect(test('-123.123E-123')).toEqual(-123.123E-123);
+      expect(test('-123.123E-123')).toEqual(-123.123e-123);
     });
   });
 
@@ -112,9 +112,11 @@ describe('Common mixin', () => {
     });
 
     it('Should not parse a multiline string', () => {
-      expect(() => test(`"A
+      expect(() =>
+        test(`"A
       multiline
-      string"`)).toThrowError();
+      string"`),
+      ).toThrowError();
     });
   });
 
@@ -152,29 +154,40 @@ describe('Common mixin', () => {
     });
 
     it('Should parse a multiline array', () => {
-      expect(test(`[
+      expect(
+        test(`[
         42
         "test"
-        ]`)).toEqual([42, 'test']);
+        ]`),
+      ).toEqual([42, 'test']);
     });
 
     it('Should parse a multiline array with some values being on one line', () => {
-      expect(test(`[
+      expect(
+        test(`[
         42 true
         "test" 1.618
-        ]`)).toEqual([42, true, 'test', 1.618]);
+        ]`),
+      ).toEqual([42, true, 'test', 1.618]);
     });
 
     it('Should parse a two level deep nested array', () => {
-      expect(test(`[
+      expect(
+        test(`[
         [ 1 0 1 ]
         [ 0 1 0 ]
         [ 1 0 1 ]
-        ]`)).toEqual([[1, 0, 1], [0, 1, 0], [1, 0, 1]]);
+        ]`),
+      ).toEqual([
+        [1, 0, 1],
+        [0, 1, 0],
+        [1, 0, 1],
+      ]);
     });
 
     it('Should parse a three level deep nested array', () => {
-      expect(test(`[
+      expect(
+        test(`[
         [
           [ 1 0 1 ]
           [ 0 1 0 ]
@@ -190,7 +203,8 @@ describe('Common mixin', () => {
           [ "test" "test" "test" ]
           [ "test" "test" "test" ]
         ]
-        ]`)).toEqual([
+        ]`),
+      ).toEqual([
         [
           [1, 0, 1],
           [0, 1, 0],
@@ -216,13 +230,17 @@ describe('Common mixin', () => {
     });
 
     it('Should parse an object with comments', () => {
-      expect(test(`{
+      expect(
+        test(`{
         property "value" #comment
-      }`)).toEqual({ property: 'value' });
+      }`),
+      ).toEqual({ property: 'value' });
     });
 
     it('Should parse nested objects', () => {
-      expect(test('{ property { nestedProperty 42 } }')).toEqual({ property: { nestedProperty: 42 } });
+      expect(test('{ property { nestedProperty 42 } }')).toEqual({
+        property: { nestedProperty: 42 },
+      });
     });
   });
 });

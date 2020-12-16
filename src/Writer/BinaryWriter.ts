@@ -1,7 +1,8 @@
 import { AbstractWriter } from './AbstractWriter';
+import { ConfigurationObject } from '../types';
 
 export abstract class BinaryWriter implements AbstractWriter {
-  async write(type: string, items: any[]): Promise<Buffer> {
+  async write(type: string, items: ConfigurationObject[]): Promise<Buffer> {
     try {
       return Promise.resolve(this.process(items));
     } catch (error) {
@@ -9,5 +10,5 @@ export abstract class BinaryWriter implements AbstractWriter {
     }
   }
 
-  async abstract process (items: any[]): Promise<Buffer>
+  abstract async process(items: ConfigurationObject[]): Promise<Buffer>;
 }

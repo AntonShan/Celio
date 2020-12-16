@@ -23,7 +23,7 @@ export enum SpectralClassStr {
   DZ, // white dwarf Z, metal lines only, no H or He
   D, // generic white dwarf, no additional data
   DX,
-  Count
+  Count,
 }
 
 export enum LuminosityClassStr {
@@ -36,7 +36,7 @@ export enum LuminosityClassStr {
   V,
   VI,
   '',
-  Count
+  Count,
 }
 
 export enum ParseState {
@@ -57,14 +57,14 @@ export enum ParseState {
   WDTypeState,
   WDExtendedTypeState,
   WDSubclassState,
-  SubdwarfPrefixState
+  SubdwarfPrefixState,
 }
 
 export enum StarType {
   NormalStar,
   WhiteDwarf,
   NeutronStar,
-  BlackHole
+  BlackHole,
 }
 
 export enum SpectralClass {
@@ -92,7 +92,7 @@ export enum SpectralClass {
   Spectral_DZ,
   Spectral_D,
   Spectral_DX,
-  Spectral_Count
+  Spectral_Count,
 }
 
 export enum LuminosityClass {
@@ -105,7 +105,7 @@ export enum LuminosityClass {
   Lum_V,
   Lum_VI,
   Lum_Unknown,
-  Lum_Count
+  Lum_Count,
 }
 
 export const LumStrClasses = [
@@ -120,7 +120,7 @@ export const LumStrClasses = [
 ];
 
 export enum Unknown {
-  Subclass_Unknown = 10
+  Subclass_Unknown = 10,
 }
 
 export const SubClassUnknown = 10;

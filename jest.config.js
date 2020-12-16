@@ -5,19 +5,10 @@ module.exports = {
   preset: 'ts-jest',
   clearMocks: true,
   collectCoverage: true,
-  collectCoverageFrom: [
-    'src/**/*.{ts}',
-    '!**/node_modules/**',
-  ],
-  moduleDirectories: [
-    'node_modules',
-  ],
+  collectCoverageFrom: ['src/**/*.{ts}', '!**/node_modules/**'],
+  moduleDirectories: ['node_modules'],
   verbose: true,
-  moduleFileExtensions: [
-    'js',
-    'ts',
-    'node',
-  ],
+  moduleFileExtensions: ['js', 'ts', 'node'],
   cache: false,
   testEnvironment: 'node',
   transform: {
