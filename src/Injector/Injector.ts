@@ -1,8 +1,8 @@
 import { AbstractReader, DATReader, NearleyBasedReader } from '../Reader';
 import { AbstractWriter, STCWriter, SSCWriter, DSCWriter, CFGWriter, DATWriter } from '../Writer';
 import { getGrammarForExtension } from '../grammar';
-import { FormatsChecker, FormatType } from '../FormatsChecker';
-import { BinaryExtension, TextExtension } from '../types';
+import { FormatsChecker } from '../FormatsChecker';
+import { BinaryExtension, FormatType, TextExtension } from '../types';
 
 class Injector {
   static makeReader(extension: TextExtension | BinaryExtension): AbstractReader {

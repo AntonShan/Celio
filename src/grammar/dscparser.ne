@@ -1,7 +1,7 @@
 @{%
   let globalId = 0
 %}
-@include "common.ne"
+@include "./src/grammar/common.ne"
 
 DSC_CATALOG -> DSC_DEFINITION:* {% id %}
 

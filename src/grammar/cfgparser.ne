@@ -1,4 +1,4 @@
-@include "common.ne"
+@include "./src/grammar/common.ne"
 
 CONFIG -> WS:* CONFIG_KEYWORD CONFIG_DESCRIPTION {% ([_ws, keyword, params]) => params %}
 

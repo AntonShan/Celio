@@ -1,7 +1,7 @@
-const path = require('path')
-const merge = require('webpack-merge')
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const path = require('path');
+const merge = require('webpack-merge');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const baseConfig = {
   entry: './src/Celio/Celio.ts',
@@ -11,27 +11,27 @@ const baseConfig = {
       {
         test: /\.ts$/,
         use: 'ts-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.ne$/,
         loader: 'nearley-webpack-loader',
         options: {
-          baseDir: './src/grammar/'
-        }
-      }
-    ]
+          baseDir: './src/grammar/',
+        },
+      },
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new UglifyJSPlugin({
-      sourceMap: true
-    })
+      sourceMap: true,
+    }),
   ],
   resolve: {
-    extensions: [ '.ts' ]
+    extensions: ['.ts'],
   },
-}
+};
 
 const clientConfig = merge(baseConfig, {
   target: 'web',
@@ -39,20 +39,20 @@ const clientConfig = merge(baseConfig, {
     filename: 'celio.js',
     libraryTarget: 'window',
     library: 'Celio',
-    path: path.resolve(__dirname, 'dist')
-  }
-})
+    path: path.resolve(__dirname, 'dist'),
+  },
+});
 
 const serverConfig = merge(baseConfig, {
   target: 'node',
   output: {
     filename: 'celio.esm.js',
     libraryTarget: 'commonjs',
-    path: path.resolve(__dirname, 'dist')
-  }
-})
+    path: path.resolve(__dirname, 'dist'),
+  },
+});
 
 module.exports = [
   serverConfig,
-  clientConfig
-]
+  clientConfig,
+];

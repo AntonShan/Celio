@@ -1,9 +1,9 @@
 import { AbstractWriter } from './AbstractWriter';
 import { Serializer } from '../Serializer';
-import { UnknownObject } from 'src/types';
+import { ConfigurationObject, ObjectMeta, SupportedExtension } from 'src/types';
 
 export abstract class TextWriter implements AbstractWriter {
-  async write(type: string, items: never[]): Promise<string> {
+  async write(type: SupportedExtension, items: ConfigurationObject[]): Promise<string> {
     try {
       return this.transform(items);
     } catch (error) {
@@ -11,13 +11,13 @@ export abstract class TextWriter implements AbstractWriter {
     }
   }
 
-  async transform(items: never[]): Promise<string> {
+  async transform(items: ConfigurationObject[]): Promise<string> {
     const transformedItems = await Promise.all(items.map(item => this.transformItem(item)));
 
     return transformedItems.join('\n');
   }
 
-  async transformItem(item: UnknownObject): Promise<string> {
+  async transformItem(item: ConfigurationObject): Promise<string> {
     const [objectHeader, objectProperties] = await Promise.all([
       this.writeHeader(item.meta),
       Serializer.stringify(item.properties),
@@ -26,5 +26,5 @@ export abstract class TextWriter implements AbstractWriter {
     return objectHeader + ' ' + objectProperties + '\n';
   }
 
-  async abstract writeHeader(value: UnknownObject): Promise<string>
+  async abstract writeHeader(value: ObjectMeta): Promise<string>
 }

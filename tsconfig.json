@@ -1,25 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES2018",
     "removeComments": true,
     "noImplicitAny": true,
     "sourceMap": true,
     "module": "ESNext",
     "baseUrl": "./",
-    "paths": {
-      "src/*": [
-        "./src/*"
-      ]
-    },
     "types": [
       "@types/node",
       "@types/jest",
       "@types/mocha",
       "@types/nearley"
-    ],
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/types"
     ],
     "lib": [
       "esnext"
@@ -38,7 +29,6 @@
     "node_modules"
   ],
   "include": [
-    "./src/**/*.ts",
-    "./src/**/*.spec.ts"
+    "./src/**/*.ts"
   ]
 }

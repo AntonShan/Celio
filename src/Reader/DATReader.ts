@@ -2,10 +2,10 @@ import { decodeSpectralClass } from '../SpectralTools';
 import { AbstractReader } from './AbstractReader';
 import { FILE_HEADER, HEADER_OFFSET, VERSION } from '../Meta';
 import { Buffer } from 'buffer';
-import { StarConfiguration } from 'src/types';
+import { ObjectCreationMode, StarObject, StarObjectType } from 'src/types';
 
 export class DATReader implements AbstractReader {
-  private static parse(data: Buffer): StarConfiguration[] {
+  private static parse(data: Buffer): StarObject[] {
     const header = data.toString('utf-8', 0, FILE_HEADER.length);
     const version = data.readUInt16LE(FILE_HEADER.length);
 
@@ -30,9 +30,10 @@ export class DATReader implements AbstractReader {
 
       result.push({
         meta: {
-          type: 'Star',
-          mode: 'ModifyStar',
+          type: StarObjectType.Star,
+          mode: ObjectCreationMode.Modify,
           number: catalogNumber,
+          names: [],
         },
         properties: {
           Distance,
@@ -49,7 +50,7 @@ export class DATReader implements AbstractReader {
     return result;
   }
 
-  async read(buffer: Buffer): Promise<StarConfiguration[]> {
+  async read(buffer: Buffer): Promise<StarObject[]> {
     try {
       return Promise.resolve(DATReader.parse(buffer));
     } catch (error) {

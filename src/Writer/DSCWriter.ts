@@ -1,8 +1,9 @@
 import { TextWriter } from './TextWriter';
 import { Serializer } from '../Serializer';
+import { DeepSkyObjectMeta } from 'src/types';
 
 export class DSCWriter extends TextWriter {
-  async writeHeader(value: any): Promise<string> {
+  async writeHeader(value: DeepSkyObjectMeta): Promise<string> {
     const [catalogNumber, type, name] = await Promise.all([
       () => Promise.resolve(value.number !== null ? String(value.number) : ''),
       () => Promise.resolve(value.type !== null ? value.type : ''),

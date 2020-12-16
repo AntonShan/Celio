@@ -2,10 +2,11 @@ const path = require('path');
 
 module.exports = {
   rootDir: path.resolve(__dirname, 'src'),
+  preset: 'ts-jest',
   clearMocks: true,
   collectCoverage: true,
   collectCoverageFrom: [
-    'src/**/*.{ts,tsx}',
+    'src/**/*.{ts}',
     '!**/node_modules/**',
   ],
   moduleDirectories: [
@@ -17,8 +18,11 @@ module.exports = {
     'ts',
     'node',
   ],
-  moduleNameMapper: {
-    '^src/(.*)': '<rootDir>/$1',
-  },
+  cache: false,
   testEnvironment: 'node',
+  transform: {
+    '^.+\\.ts$': 'ts-jest',
+    '^.+\\.js$': 'babel-jest',
+    '^.+\\.ne$': 'jest-transform-nearley',
+  },
 };

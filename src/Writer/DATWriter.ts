@@ -2,9 +2,10 @@ import { BinaryWriter } from './BinaryWriter';
 import { FILE_HEADER, VERSION } from '../Meta';
 import { encodeSpectralClass } from '../SpectralTools';
 import { Buffer } from 'buffer';
+import { StarObject } from 'src/types';
 
 export class DATWriter extends BinaryWriter {
-  async process(items: any[]): Promise<Buffer> {
+  async process(items: StarObject[]): Promise<Buffer> {
     const header = FILE_HEADER;
     const version = VERSION;   // 2 bytes
     const itemsCount = items.length;     // 4 bytes

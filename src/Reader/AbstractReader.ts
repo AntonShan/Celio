@@ -1,5 +1,5 @@
-import { ObjectConfiguration } from 'src/types';
+import { ConfigurationObject } from 'src/types';
 
 export abstract class AbstractReader {
-  abstract read (fileName: Buffer | string): Promise<ObjectConfiguration[]>
+  abstract read (fileName: Buffer | string): Promise<ConfigurationObject[]>
 }
